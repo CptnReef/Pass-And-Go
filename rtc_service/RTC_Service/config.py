@@ -10,7 +10,7 @@ class Config:
             self.SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
             self.SECRET_KEY = os.environ.get('SECRET_KEY')
 
-            self.SCORING_SERVICE_URL = os.environ.get('RTC_SERVICE_URL')
+            self.RTC_SERVICE_URL = os.environ.get('RTC_SERVICE_URL')
 
             Config.__instance__ = self
             
