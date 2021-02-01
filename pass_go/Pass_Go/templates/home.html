@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="hero-container col-12 p-0 d-flex align-items-center">
+    <canvas id="hero-image" class="position-absolute"></canvas>
+
+    <div class="position-absolute col-11 text-light ps-5 ms-5">
+
+        <h1 class="display-3">Meet People. Make Friends. Play Games.</h1>
+        <p class="lead fs-4">Play games and chill with your friends without leaving lockdown.</p>
+        <div class="btn btn-primary bg-dark border-0 px-5 py-2 fs-5 mt-2">Play Now</div>
+    </div>
+</div>
+
+<section class="text-dark p-5 d-flex flex-column align-items-center feature-section">
+    <p class="fs-1 text-center mb-5">Features</p>
+    <div class="container d-flex">
+
+        <div class="col-lg-6 pt-5 me-5" data-aos="fade-right" data-aos-duration="1000">
+            <img src="/static/images/group_hangout.svg" class="col-8" />
+        </div>
+
+        <div class="col-lg-5" data-aos="fade-left" data-aos-duration="1000">
+            <p class="fs-1">More Than Just Video Chat</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl eros,
+                pulvinar facilisis justo mollis, auctor consequat urna. Morbi a bibendum metus.
+                Donec scelerisque sollicitudin enim eu venenatis. Duis tincidunt laoreet ex,
+                in pretium orci vestibulum eget. Class aptent taciti sociosqu ad litora torquent
+                per conubia nostra, per inceptos himenaeos. Duis pharetra luctus lacus ut
+                vestibulum.<br>Maecenas ipsum lacus, lacinia quis posuere ut, pulvinar vitae dolor.
+                Integer eu nibh at nisi ullamcorper sagittis id vel leo. Integer feugiat
+                faucibus libero, at maximus nisl suscipit posuere. Morbi nec enim nunc.
+                Phasellus bibendum turpis ut ipsum egestas, sed sollicitudin elit convallis.
+                Cras pharetra mi tristique sapien vestibulum lobortis. Nam eget bibendum metus,
+                non dictum mauris. Nulla at tellus sagittis, viverra est a, bibendum metus.</p>
+        </div>
+    </div>
+</section>
+
+<section class="text-dark p-5 d-flex flex-column align-items-center howItWorks-section">
+    <p class="fs-1 text-center mb-5">How does it work?</p>
+    <div class="container d-flex">
+
+        <div class="col-lg-6 me-5" data-aos="fade-right" data-aos-duration="1000">
+            <div class="col-lg-10">
+                <p class="fs-1">How does it work?</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl eros,
+                    pulvinar facilisis justo mollis, auctor consequat urna. Morbi a bibendum metus.
+                    Donec scelerisque sollicitudin enim eu venenatis. Duis tincidunt laoreet ex,
+                    in pretium orci vestibulum eget. Class aptent taciti sociosqu ad litora torquent
+                    per conubia nostra, per inceptos himenaeos. Duis pharetra luctus lacus ut
+                    vestibulum.<br>Maecenas ipsum lacus, lacinia quis posuere ut, pulvinar vitae dolor.
+                    Integer eu nibh at nisi ullamcorper sagittis id vel leo. Integer feugiat
+                    faucibus libero, at maximus nisl suscipit posuere. Morbi nec enim nunc.
+                    Phasellus bibendum turpis ut ipsum egestas, sed sollicitudin elit convallis.
+                    Cras pharetra mi tristique sapien vestibulum lobortis. Nam eget bibendum metus,
+                    non dictum mauris. Nulla at tellus sagittis, viverra est a, bibendum metus.</p>
+            </div>
+        </div>
+
+        <div class="col-lg-6 pt-5" data-aos="fade-left" data-aos-duration="1000">
+            <img src="/static/images/connection.svg" class="col-8" />
+        </div>
+    </div>
+</section>
+
+<section class="text-dark p-5 text-center team-section">
+    <p class="fs-1">The Team</p>
+
+</section>
+
+{% endblock content %}
+
+{% block scripts %}
+<!-- hero animation -->
+<script src="https://unpkg.com/thpace"></script>
+<script src="/static/js/thpace.js"></script>
+
+<!-- scroll animations -->
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+{% endblock scripts %}
