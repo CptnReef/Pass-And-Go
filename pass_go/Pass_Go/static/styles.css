@@ -4,10 +4,6 @@
     background-color: #4c8fef;
 }
 
-section {
-    height: 75vh;
-}
-
 .feature-section, .team-section {
     background-color: #eaebed;
 }
@@ -15,3 +11,4 @@ section {
 .howItWorks-section {
     background-color: #c1d0e7;
 }
+
