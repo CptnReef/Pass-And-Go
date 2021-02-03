@@ -6,18 +6,7 @@ const TURN_SERVER_CREDENTIAL = 'credential';
 // WebRTC config: you don't have to change this for the example to work
 // If you are testing on localhost, you can just use PC_CONFIG = {}
 const PC_CONFIG = {
-  iceServers: [
-    {
-      urls: 'turn:' + TURN_SERVER_URL + '?transport=tcp',
-      username: TURN_SERVER_USERNAME,
-      credential: TURN_SERVER_CREDENTIAL
-    },
-    {
-      urls: 'turn:' + TURN_SERVER_URL + '?transport=udp',
-      username: TURN_SERVER_USERNAME,
-      credential: TURN_SERVER_CREDENTIAL
-    }
-  ]
+
 };
 
 // Signaling methods
@@ -27,11 +16,11 @@ let socket = io(SIGNALING_SERVER_URL,
   });
 
 socket.on('data', (data) => {
-  console.log('Data received: ',data);
+  console.log('Data received: ', data);
   handleSignalingData(data);
 });
 
-socket.on('ready', () => {
+socket.on('ready', (data) => {
   console.log('Ready');
   // Connection with signaling server is ready, and so is local stream
   createPeerConnection();

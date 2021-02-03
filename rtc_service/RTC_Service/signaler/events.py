@@ -5,7 +5,7 @@ from RTC_Service import db_session, socketio
 from RTC_Service.models import USER_RTC_ROOM_ROLE
 from RTC_Service.sql_models import User_RTC, Room
 from threading import Lock
-from flask_socketio import join_room, leave_room
+from flask_socketio import join_room, leave_room, emit
 
 ROOM='test'
 
@@ -18,11 +18,12 @@ rooms_participants = dict()
 #     print('Connected', sid)
 #     await socketio.emit('ready', room=ROOM, skip_sid=sid)
 #     join_room(ROOM)
+
 @socketio.on('connect', namespace='/signaler')
 def connect():
     sid = request.sid
     print('Connected', sid)
-    socketio.emit('ready', room=ROOM, skip_sid=sid)
+    emit('ready', data={}, room=ROOM, skip_sid=sid)
     join_room(ROOM)
 
 @socketio.on('disconnect', namespace='/signaler')
@@ -37,4 +38,4 @@ def data(data):
     sid = request.sid
     print('data')
     print('Message from {}: {}'.format(sid, data))
-    socketio.emit('data', data, room=ROOM, skip_sid=sid)
+    emit('data', data, room=ROOM, skip_sid=sid)
