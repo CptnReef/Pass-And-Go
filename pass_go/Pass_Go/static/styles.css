@@ -12,3 +12,7 @@
     background-color: #c1d0e7;
 }
 
+.team-portrait {
+    box-shadow: 3px 1px 14px;
+    border-radius: 200px;
+}
