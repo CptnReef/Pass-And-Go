@@ -1,22 +1,24 @@
 import os, json
 from flask import Flask
 from sqlalchemy import create_engine
-from Pass_Go.config import Config
+from RTC_Service.config import Config
 import datetime
 from sqlalchemy.orm import sessionmaker
-
+from flask_socketio import SocketIO
 
 config = Config.get_instance()
 
 app = Flask(__name__, static_folder="static")
 
 app.config['SECRET_KEY'] = config.SECRET_KEY
-app.config['RTC_SERVICE_URL'] = config.RTC_SERVICE_URL
 app.config['SQLALCHEMY_DATABASE_URI'] = config.SQLALCHEMY_DATABASE_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-from Pass_Go.sql_models import (
-    User,
+from RTC_Service.sql_models import (
+    User_RTC_Room_Association,
+    User_RTC,
+    Room,
+    User_Token,
     Base
 )
 
@@ -30,12 +32,16 @@ db_session = Session()
 db_session.commit()
 
 #### ADD ROUTING ####
-from RTC_Service.blueprints.user.views import User_Blueprint
+# from RTC_Service.blueprints.user.views import User_Blueprint
 
-app.register_blueprint(User_Blueprint, url_prefix='/')
+# app.register_blueprint(User_Blueprint, url_prefix='/')
 
 
-@app.after_request
-def after_request(response):    
-    return response
+
+socketio = SocketIO(app, cors_allowed_origins="*")
+import RTC_Service.signaler.events
+
+# @app.after_request
+# def after_request(response):    
+#     return response
 
