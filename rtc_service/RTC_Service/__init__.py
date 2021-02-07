@@ -36,7 +36,9 @@ db_session.commit()
 
 # app.register_blueprint(User_Blueprint, url_prefix='/')
 
-
+@app.route('/', methods=['GET'])
+def index():
+    return render_template('index.html')
 
 socketio = SocketIO(app, cors_allowed_origins="*")
 import RTC_Service.signaler.events
