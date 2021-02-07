@@ -1,8 +1,8 @@
 // Config variables: change them to point to your own servers
 // const SIGNALING_SERVER_URL = 'http://127.0.0.1:5000/signaler';
 // const TURN_SERVER_URL = 'localhost:3478';
-const SIGNALING_SERVER_URL = 'https://www.pass-go.net/signaler';
-const TURN_SERVER_URL = 'https://www.pass-go.net:3478';
+// const SIGNALING_SERVER_URL = 'https://www.pass-go.net/signaler';
+// const TURN_SERVER_URL = 'https://www.pass-go.net:3478';
 const TURN_SERVER_USERNAME = 'username';
 const TURN_SERVER_CREDENTIAL = 'credential';
 // WebRTC config: you don't have to change this for the example to work
@@ -44,13 +44,13 @@ let getLocalStream = () => {
     .then((stream) => {
       console.log('Stream found');
       localStream = stream;
-      localStreamNoAudio = stream;
+      localStreamNoAudio = stream.clone();
 
-      var audioTrackList = localStreamNoAudio.getAudioTracks();
-      while (audioTrackList.length > 0) {
-        localStreamNoAudio.removeTrack(audioTrackList[0]);
-        audioTrackList = localStreamNoAudio.getAudioTracks();
-      }
+      // var audioTrackList = localStreamNoAudio.getAudioTracks();
+      // while (audioTrackList.length > 0) {
+      //   localStreamNoAudio.removeTrack(audioTrackList[0]);
+      //   audioTrackList = localStreamNoAudio.getAudioTracks();
+      // }
       console.log('Remove Audio from user display stream');
 
       localStreamElement.srcObject = localStreamNoAudio;
