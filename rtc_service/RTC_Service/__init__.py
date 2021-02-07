@@ -1,5 +1,5 @@
 import os, json
-from flask import Flask
+from flask import Flask, render_template
 from sqlalchemy import create_engine
 from RTC_Service.config import Config
 import datetime
@@ -36,7 +36,7 @@ db_session.commit()
 
 # app.register_blueprint(User_Blueprint, url_prefix='/')
 
-@app.route('/', methods=['GET'])
+@app.route('/rtc_service', methods=['GET'])
 def index():
     return render_template('index.html')
 
