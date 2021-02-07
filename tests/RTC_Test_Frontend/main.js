@@ -46,11 +46,11 @@ let getLocalStream = () => {
       localStream = stream;
       localStreamNoAudio = stream.clone();
 
-      // var audioTrackList = localStreamNoAudio.getAudioTracks();
-      // while (audioTrackList.length > 0) {
-      //   localStreamNoAudio.removeTrack(audioTrackList[0]);
-      //   audioTrackList = localStreamNoAudio.getAudioTracks();
-      // }
+      var audioTrackList = localStreamNoAudio.getAudioTracks();
+      while (audioTrackList.length > 0) {
+        localStreamNoAudio.removeTrack(audioTrackList[0]);
+        audioTrackList = localStreamNoAudio.getAudioTracks();
+      }
       console.log('Remove Audio from user display stream');
 
       localStreamElement.srcObject = localStreamNoAudio;
