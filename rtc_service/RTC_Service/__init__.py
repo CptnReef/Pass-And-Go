@@ -1,10 +1,11 @@
 import os, json
-from flask import Flask
+from flask import Flask, render_template
 from sqlalchemy import create_engine
 from RTC_Service.config import Config
 import datetime
 from sqlalchemy.orm import sessionmaker
 from flask_socketio import SocketIO
+from flask_cors import CORS
 
 config = Config.get_instance()
 
@@ -13,6 +14,7 @@ app = Flask(__name__, static_folder="static")
 app.config['SECRET_KEY'] = config.SECRET_KEY
 app.config['SQLALCHEMY_DATABASE_URI'] = config.SQLALCHEMY_DATABASE_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+CORS(app)
 
 from RTC_Service.sql_models import (
     User_RTC_Room_Association,
@@ -36,7 +38,9 @@ db_session.commit()
 
 # app.register_blueprint(User_Blueprint, url_prefix='/')
 
-
+@app.route('/rtc_service', methods=['GET'])
+def index():
+    return render_template('index.html')
 
 socketio = SocketIO(app, cors_allowed_origins="*")
 import RTC_Service.signaler.events
