@@ -1,0 +1,18 @@
+/* 1.0 - Home Page */
+.hero-container {
+    height: 100vh;
+    background-color: #4c8fef;
+}
+
+.feature-section, .team-section {
+    background-color: #eaebed;
+}
+
+.howItWorks-section {
+    background-color: #c1d0e7;
+}
+
+.team-portrait {
+    box-shadow: 3px 1px 14px;
+    border-radius: 200px;
+}
