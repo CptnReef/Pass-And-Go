@@ -32,16 +32,16 @@ class User(Base):
     __tablename__ = 'User'
     __code_prefix__ = 'U___'
 
-    id = db.Column(db.Integer, primary_key = True, autoincrement=True)
-    code = db.Column(db.String(36), primary_key=False, autoincrement=False, unique=True, nullable=False)
+    id = Column(Integer, primary_key = True, autoincrement=True)
+    code = Column(String(36), primary_key=False, autoincrement=False, unique=True, nullable=False)
 
-    created_datetime = db.Column(db.DateTime(), default=datetime.now())
-    modified_datetime = db.Column(db.DateTime(), onupdate=datetime.utcnow())
+    created_datetime = Column(DateTime(), default=datetime.now())
+    modified_datetime = Column(DateTime(), onupdate=datetime.utcnow())
 
-    email = db.Column(db.String(64), index=True, unique=True)
-    name = db.Column(db.String(64), index=True, unique=False)
+    email = Column(String(64), index=True, unique=True)
+    name = Column(String(64), index=True, unique=False)
 
-    password_hash = db.Column(db.String(128), index=True)
+    password_hash = Column(String(128), index=True)
 
     def __init__(self, email, password, name):
         self.code = 'US__' + uuid.uuid4().hex  
