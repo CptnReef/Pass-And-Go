@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="video-section">
+    <div class="window-container-column">
+        <div class="game-window-wrapper">
+            <div class="content-window" id="game-window">
+                <div class="window-title row m-0 p-0">
+                    <div class="col-6 offset-3 text-center">
+                        <p>Game Window</p>
+                    </div>
+                    <div class="popout-button col-3 text-right">popping</div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="window-container-row">
+            <div class="video-window-wrapper">
+                <div class="content-window" id="user-video-window">
+                    <div class="window-title row m-0 p-0">
+                        <div class="col-6 offset-3 text-center">
+                            <p>User Video</p>
+                        </div>
+                        <div class="popout-button col-3 text-right">popping</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-window-wrapper">
+                <div class="content-window" id="opponent-video-window">
+                    <div class="window-title row m-0 p-0">
+                        <div class="col-6 offset-3 text-center">
+                            <p>Other Player Video</p>
+                        </div>
+                        <div class="popout-button col-3 text-right">popping</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<div id="ghostpane"></div>
+
+
+{% endblock content %}
+
+{% block scripts %}
+
+<!-- Drag and drop functionality -->
+<script src="/static/js/window-management.js"></script>
+
+{% endblock scripts %}
