@@ -2,6 +2,7 @@ import os, json
 from flask import Flask
 # from sqlalchemy import create_engine
 from Pass_Go.config import Config
+from Pass_Go.blueprints.user.views import User_Blueprint
 import datetime
 # from sqlalchemy.orm import sessionmaker
 
