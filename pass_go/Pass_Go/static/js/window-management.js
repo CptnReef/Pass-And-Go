@@ -2,11 +2,14 @@
 
 const popoutButtons = document.querySelectorAll(".popout-button");
 
+console.log(popoutButtons)
+
 popoutButtons.forEach(function (elem, index) {
     elem.addEventListener("click", function () {
         parent = elem.parentElement.parentElement
 
-        parent.classList.add("window-draggable")
+        parent.classList.toggle("window-draggable")
+        parent.classList.toggle("window-static")
         makeDraggable(parent.id, 'ghostpane')
     });
 });
@@ -19,9 +22,10 @@ popoutButtons.forEach(function (elem, index) {
  * @author https://twitter.com/blurspline / https://github.com/zz85
  * See post @ http://www.lab4games.net/zz85/blog/2014/11/15/resizing-moving-snapping-windows-with-js-css/
  */
+
 function makeDraggable(elemId, ghostId) {
     // Minimum resizable area
-    var minWidth = 60;
+    var minWidth = 400;
     var minHeight = 40;
 
     // Thresholds

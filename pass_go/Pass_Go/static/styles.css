@@ -27,11 +27,11 @@ body {
 /* 2.1 Video Windows */
 .content-window {
     width: 100%;
-    min-height: 45vh;
+    height: 45vh;
     border-radius: 5px;
     background-color: white;
     border: 2px solid #4c8fef;
-
+    overflow: hidden;
     z-index:99;
     /* position: absolute; */
 }
@@ -47,7 +47,8 @@ body {
 .window-container-column {
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     overflow: hidden;
@@ -62,6 +63,7 @@ body {
 
 .video-window-wrapper {
     width: 50%;
+    min-width: 400px;
     padding: 5px;
     min-height: 45vh;
 }
@@ -75,9 +77,12 @@ body {
 /* 2.2 Window Popout  */
 .popout-button {
     text-align: right;
+    cursor: pointer;
+    z-index: 99;
 }
 
 .window-draggable {
+    display: block;
     position: absolute;
     width: 50%;
 }
@@ -101,6 +106,12 @@ body {
 	-ms-transition: all 0.25s ease-in-out;
 	-o-transition: all 0.25s ease-in-out;
 	transition: all 0.25s ease-in-out;
+}
+
+/* 2.3 Video */
+
+.video-stream {
+    width: 100%;
 }
 
 /* 3.0 Utility Classes */

@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
+
 <section class="video-section">
+
     <div class="window-container-column">
         <div class="game-window-wrapper">
             <div class="content-window" id="game-window">
@@ -9,46 +11,67 @@
                     <div class="col-6 offset-3 text-center">
                         <p>Game Window</p>
                     </div>
-                    <div class="popout-button col-3 text-right">popping</div>
+                    <div class="popout-button col-3 text-right">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            style="fill: #fff">
+                            <path d="M0 3v18h24v-18h-24zm22 16h-4v-10h-16v-4h20v14z" />
+                        </svg>
+                    </div>
                 </div>
             </div>
         </div>
 
-
-        <div class="window-container-row">
-            <div class="video-window-wrapper">
-                <div class="content-window" id="user-video-window">
-                    <div class="window-title row m-0 p-0">
-                        <div class="col-6 offset-3 text-center">
-                            <p>User Video</p>
-                        </div>
-                        <div class="popout-button col-3 text-right">popping</div>
+        <div class="video-window-wrapper">
+            <div class="content-window" id="opponent-video-window">
+                <div class="window-title row m-0 p-0">
+                    <div class="col-6 offset-3 text-center">
+                        <p>Other Player Video</p>
+                    </div>
+                    <div class="popout-button col-3 text-right">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            style="fill: #fff">
+                            <path d="M0 3v18h24v-18h-24zm22 16h-4v-10h-16v-4h20v14z" />
+                        </svg>
                     </div>
                 </div>
+                <video id="remoteStream" class="video-stream" autoplay playsinline></video>
             </div>
+        </div>
 
-            <div class="video-window-wrapper">
-                <div class="content-window" id="opponent-video-window">
-                    <div class="window-title row m-0 p-0">
-                        <div class="col-6 offset-3 text-center">
-                            <p>Other Player Video</p>
-                        </div>
-                        <div class="popout-button col-3 text-right">popping</div>
+        <div class="video-window-wrapper">
+            <div class="content-window" id="user-video-window">
+                <div class="window-title row m-0 p-0">
+                    <div class="col-6 offset-3 text-center">
+                        <p>User Video</p>
+                    </div>
+                    <div class="popout-button col-3 text-right">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            style="fill: #fff">
+                            <path d="M0 3v18h24v-18h-24zm22 16h-4v-10h-16v-4h20v14z" />
+                        </svg>
                     </div>
                 </div>
+                <video id="localStream" class="video-stream" autoplay playsinline></video>
             </div>
-
         </div>
     </div>
+
+    <div id="ghostpane"></div>
 </section>
-<div id="ghostpane"></div>
+
 
 
 {% endblock content %}
 
 {% block scripts %}
 
+<!-- Socket IO -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.min.js"></script>
+
 <!-- Drag and drop functionality -->
-<script src="/static/js/window-management.js"></script>
+<script src="{{ url_for('static', filename='js/window-management.js') }}"></script>
+
+<!-- Video Chat Manager -->
+<script src="{{ url_for('static', filename='js/video-chat.js') }}"></script>
 
 {% endblock scripts %}
