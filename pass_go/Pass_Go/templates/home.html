@@ -8,7 +8,9 @@
 
         <h1 class="display-3">Meet People. Make Friends. Play Games.</h1>
         <p class="lead fs-4">Play games and chill with your friends without leaving lockdown.</p>
-        <div class="btn btn-primary bg-dark border-0 px-5 py-2 fs-5 mt-2">Play Now</div>
+        <a href="/go">
+            <div class="btn btn-primary bg-dark border-0 px-5 py-2 fs-5 mt-2">Play Now</div>
+        </a>
     </div>
 </div>
 
@@ -210,7 +212,7 @@
 {% block scripts %}
 <!-- hero animation -->
 <script src="https://unpkg.com/thpace"></script>
-<script src="/static/js/thpace.js"></script>
+<script src="{{ url_for('static', filename='js/thpace.js') }}"></script>
 
 <!-- scroll animations -->
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
