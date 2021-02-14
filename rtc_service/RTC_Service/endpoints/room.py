@@ -3,10 +3,7 @@ from flask import Blueprint, request
 
 from RTC_Service import db_session
 from RTC_Service.sql_models import (
-    User_RTC_Room_Association,
-    User_RTC,
     Room,
-    User_Token,
 )
 
 Room_Blueprint = Blueprint('room',__name__)

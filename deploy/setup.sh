@@ -105,7 +105,7 @@ sudo cp $WD/deploy/pass-go-service-SV.conf /etc/supervisor/conf.d/
 
 mkdir -p /home/ubuntu/log
 touch /home/ubuntu/log/rtc.err.log && touch /home/ubuntu/log/rtc.out.log
-touch /home/ubuntu/log/pass-go.err.log && touch /home/ubuntu/log/scoring/pass-go.out.log
+touch /home/ubuntu/log/pass-go.err.log && touch /home/ubuntu/log/pass-go.out.log
 
 sudo apt -y update
 sudo apt install -y nginx
