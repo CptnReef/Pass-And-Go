@@ -17,10 +17,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 CORS(app)
 
 from RTC_Service.sql_models import (
-    User_RTC_Room_Association,
-    User_RTC,
     Room,
-    User_Token,
     Base
 )
 
