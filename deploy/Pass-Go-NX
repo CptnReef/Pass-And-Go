@@ -1,0 +1,21 @@
+server {
+    listen 80;
+    server_name www.pass-go.net;
+
+    location / {
+        proxy_pass http://localhost:5001;
+        include /etc/nginx/proxy_params;
+        proxy_redirect off;
+    }
+}
+
+server {
+    listen 80;
+    server_name rtc.pass-go.net;
+
+    location / {
+        proxy_pass http://localhost:8000;
+        include /etc/nginx/proxy_params;
+        proxy_redirect off;
+    }
+}

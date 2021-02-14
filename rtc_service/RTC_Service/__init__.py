@@ -34,9 +34,10 @@ db_session = Session()
 db_session.commit()
 
 #### ADD ROUTING ####
-# from RTC_Service.blueprints.user.views import User_Blueprint
+from RTC_Service.endpoints.room import Room_Blueprint
 
-# app.register_blueprint(User_Blueprint, url_prefix='/')
+app.register_blueprint(Room_Blueprint, url_prefix='/room')
+
 
 @app.route('/rtc_service', methods=['GET'])
 def index():
