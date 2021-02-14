@@ -114,4 +114,20 @@ body {
     width: 100%;
 }
 
-/* 3.0 Utility Classes */
+/* 3.0 Auth */
+.auth-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(221, 221, 221);
+    min-height: 75vh;
+}
+
+.auth-container {
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+
+/* 4.0 Utility Classes */
