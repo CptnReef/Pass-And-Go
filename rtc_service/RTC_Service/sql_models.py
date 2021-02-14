@@ -41,16 +41,16 @@ class Room(Base):
     # Active record
     active = Column(Boolean, index=True, nullable=False, default=True)
 
-    user_access_token = Column(String(256), index=True, nullable=False, unique=True)
+    access_token = Column(String(256), index=True, nullable=False, unique=True)
 
 
     def __init__(self, users=None):
         self.code = self.__code_prefix__ + uuid.uuid4().hex
-        self.user_access_token = ''.join(random.choices(string.ascii_uppercase + string.digits + string.ascii_lowercase, k=256))
+        self.access_token = ''.join(random.choices(string.ascii_uppercase + string.digits + string.ascii_lowercase, k=256))
 
 
     def as_dict(self):
         return_dict = dict()
         return_dict['code']=self.code
-        return_dict['user_access_token']=self.code        
+        return_dict['access_token']=self.access_token        
         return return_dict
