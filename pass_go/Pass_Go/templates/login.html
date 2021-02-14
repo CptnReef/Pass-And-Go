@@ -4,29 +4,34 @@
 <section class="auth-section">
 
     <div class="auth-container">
-        <h1>Log In</h1>
+        <p class="fs-3 text-center">Login</p>
         <form action="{{ url_for('user.login', next=request.args.get('next')) }}" method="POST">
             {{ form.csrf_token }}
             <fieldset>
-                <legend>Enter your credentials</legend>
 
-                {{ form.username.label }}
-                {{ form.username }}
+                <div class="input-wrapper">
+                    {{ form.email.label(class_="form-label") }}
+                    {{ form.email(class_="form-control") }}
+                </div>
                 <ul>
-                    {% for error in form.username.errors %}
+                    {% for error in form.email.errors %}
                     <li class="error">{{ error }}</li>
                     {% endfor %}
                 </ul>
 
-                {{ form.password.label }}
-                {{ form.password }}
+                <div class="input-wrapper">
+                    {{ form.password.label(class_="form-label") }}
+                    {{ form.password(class_="form-control") }}
+                </div>
                 <ul>
                     {% for error in form.password.errors %}
                     <li class="error">{{ error }}</li>
                     {% endfor %}
                 </ul>
 
-                {{ form.submit }}
+                <div class="input-wrapper">
+                    {{ form.submit(class_="btn btn-primary") }}
+                </div>
             </fieldset>
         </form>
     </div>
