@@ -3,7 +3,7 @@ from datetime import datetime
 import os, pickle, json
 from RTC_Service import db_session, socketio
 from RTC_Service.models import USER_RTC_ROOM_ROLE
-from RTC_Service.sql_models import User_RTC, Room
+from RTC_Service.sql_models import Room
 from threading import Lock
 from flask_socketio import join_room, leave_room, emit
 

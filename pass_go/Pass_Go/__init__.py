@@ -1,13 +1,11 @@
 from Pass_Go.blueprints.main.routes import Main_Blueprint
-import os
-import json
+import os, json
 from flask import Flask, send_from_directory
 # from sqlalchemy import create_engine
 from Pass_Go.config import Config
-from Pass_Go.blueprints.user.views import User_Blueprint
+from Pass_Go.blueprints.user.routes import User_Blueprint
 import datetime
 # from sqlalchemy.orm import sessionmaker
-
 
 config = Config.get_instance()
 
@@ -46,4 +44,5 @@ def after_request(response):
 @app.route("/favicon.ico")
 def favicon():
     """Sends the favicon to the client"""
-    return send_from_directory(os.path.join(app.root_path, "static"), "./favicon.ico")
+    return send_from_directory(os.path.join(app.root_path, "static"),
+                               "./favicon.ico")
