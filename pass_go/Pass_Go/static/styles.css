@@ -120,6 +120,7 @@ body {
 /* 3.0 Auth */
 .auth-section {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: rgb(221, 221, 221);
