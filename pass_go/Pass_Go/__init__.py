@@ -1,3 +1,4 @@
+from Pass_Go.blueprints.main.routes import Main_Blueprint
 import os, json
 from flask import Flask, send_from_directory
 # from sqlalchemy import create_engine
@@ -32,6 +33,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #### ADD ROUTING ####
 
 app.register_blueprint(User_Blueprint, url_prefix='/')
+app.register_blueprint(Main_Blueprint, url_prefix='/')
 
 
 @app.after_request
