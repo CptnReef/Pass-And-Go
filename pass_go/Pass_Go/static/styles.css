@@ -118,6 +118,42 @@ body {
 }
 
 /* 3.0 Auth */
+
+.profile-icon {
+    padding-top: 6px;
+}
+
+.profile-name {
+    font-size: 28px;
+}
+
+.profile-header {
+    text-align: right;
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-section {
+    background-color: rgb(221, 221, 221);
+}
+
+.user-stats-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.user-stat {
+    padding: 50px 80px;
+    height: 300px;
+    width: 300px;
+    border: 2px solid gray;
+    border-radius: 10px;
+    margin: 20px;
+    background-color: rgb(238, 238, 238);
+}
+
 .auth-section {
     display: flex;
     flex-direction: column;

@@ -1,4 +1,4 @@
-from Pass_Go.models import User
+from Pass_Go.sql_models import User
 from Pass_Go import db_session, login_manager
 
 @login_manager.user_loader
