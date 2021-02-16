@@ -7,9 +7,14 @@ from Pass_Go.sql_models import User
 class SignUpForm(FlaskForm):
     """Form for creating a new user"""
 
-    username = StringField('User Name', validators=[DataRequired(), Length(min=3, max=50)])
+    username = StringField('User Name',
+                           validators=[DataRequired(),
+                                       Length(min=3, max=50)])
 
-    email = StringField("Email", validators=[DataRequired(), Length(min=3, max=80), Email()])
+    email = StringField(
+        "Email", validators=[DataRequired(),
+                             Length(min=3, max=80),
+                             Email()])
 
     password = PasswordField('Password', validators=[DataRequired()])
 
@@ -24,12 +29,16 @@ class SignUpForm(FlaskForm):
 
 class LoginForm(FlaskForm):
     """Form for logging in a user"""
-    email = StringField("Email", validators=[DataRequired(), Length(min=3, max=80), Email()])
+    email = StringField(
+        "Email", validators=[DataRequired(),
+                             Length(min=3, max=80),
+                             Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Log In')
 
 
 class ResetPasswordForm(FlaskForm):
     """For resetting a user's password"""
-    oldPassword = PasswordField('Password', validators=[DataRequired()])
-    newPassword = PasswordField('Password', validators=[DataRequired()])
+    oldPassword = PasswordField('Old Password', validators=[DataRequired()])
+    newPassword = PasswordField('New Password', validators=[DataRequired()])
+    submit = SubmitField('Reset Password')

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<section class="profile-section">
+<section class="profile-stat-section">
     <div class="profile-header">
         <a class="nav-link profile-icon" href="/myprofile">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
@@ -13,29 +13,65 @@
         <p class="profile-name">Username</p>
     </div>
     <div class="user-stats-container">
-        <div class="user-stat">
-            <p class="fs-4">Game Stats:</p>
-            <p><strong>Total Games:</strong> 11</p>
-            <p><strong>Wins:</strong> 4</p>
-            <p><strong>Losses:</strong> 7</p>
+        <div class="flex-row">
+            <div class="user-stat">
+                <p class="fs-4 text-med">Stats:</p>
+                <p><strong>Total Games:</strong> 11</p>
+                <p><strong>Wins:</strong> 4</p>
+                <p><strong>Losses:</strong> 7</p>
+            </div>
+            <div class="user-stat">
+                <p class="fs-4 text-med">Kills:</p>
+                <p><strong>Total Kills:</strong> 2</p>
+                <p><strong>Total Deaths:</strong> 10</p>
+                <p><strong>KDR:</strong> 0.2</p>
+            </div>
         </div>
-        <div class="user-stat">
-            <p class="fs-4">KDR: 0.2</p>
-            <p><strong>Total Kills:</strong> 2</p>
-            <p><strong>Total Deaths:</strong> 10</p>
-        </div>
-        <div class="user-stat">
-            <p class="fs-4">User Impact</p>
-            <p><strong>Total Games:</strong> 11</p>
-            <p><strong>Unique Users Met:</strong> 11</p>
-        </div>
-        <div class="user-stat">
-            <p class="fs-4">Reputation Score</p>
-            <p><strong>Total Rep Earned:</strong> 40</p>
-            <p><strong>Rep Score:</strong> 90/100</p>
+        <div class="flex-row">
+            <div class="user-stat">
+                <p class="fs-4 text-med">User Impact:</p>
+                <p><strong>Total Games:</strong> 11</p>
+                <p><strong>Unique Users Met:</strong> 11</p>
+            </div>
+            <div class="user-stat">
+                <p class="fs-4 text-med">Reputation Score:</p>
+                <p><strong>Total Rep Earned:</strong> 40</p>
+                <p><strong>Rep Score:</strong> 90/100</p>
+            </div>
         </div>
     </div>
 
+</section>
+<section class="profile-setting-section">
+    <p class="fs-3 mb-0 mx-4">User Settings</p>
+    <div class="user-settings-container col-4">
+
+        <p class="fs-5 text-center">Reset Password</p>
+        <form action="" method="POST">
+            {{ form.csrf_token }}
+            <fieldset>
+                <div class="input-wrapper">
+                    {{ form.oldPassword.label(class_="form-label") }}
+                    {{ form.oldPassword(class_="form-control") }}
+                </div>
+                <ul>
+                    {% for error in form.oldPassword.errors %}
+                    <li class="error">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+
+                <div class="input-wrapper">
+                    {{ form.newPassword.label(class_="form-label") }}
+                    {{ form.newPassword(class_="form-control") }}
+                </div>
+                <ul>
+                    {% for error in form.newPassword.errors %}
+                    <li class="error">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </fieldset>
+        </form>
+    </div>
 </section>
 
 {% endblock content %}
