@@ -1,5 +1,6 @@
 import os
 import json
+from dotenv import load_dotenv
 
 
 class Config:
@@ -8,8 +9,8 @@ class Config:
     def __init__(self):
         """ Constructor."""
         if Config.__instance__ is None:
-            self.SQLALCHEMY_DATABASE_URI = os.environ.get(
-                'SQLALCHEMY_DATABASE_URI')
+            load_dotenv()
+            self.SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
             self.SECRET_KEY = os.environ.get('SECRET_KEY')
 
             self.RTC_SERVICE_URL = os.environ.get('RTC_SERVICE_URL')
