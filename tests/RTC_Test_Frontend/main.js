@@ -3,6 +3,8 @@
 // const TURN_SERVER_URL = 'localhost:3478';
 // const SIGNALING_SERVER_URL = 'https://www.pass-go.net/signaler';
 // const TURN_SERVER_URL = 'https://www.pass-go.net:3478';
+const SIGNALING_SERVER_URL = 'https://rtc.pass-go.net/signaler';
+const TURN_SERVER_URL = 'turn:rtc.pass-go.net:3478';
 const TURN_SERVER_USERNAME = 'username';
 const TURN_SERVER_CREDENTIAL = 'credential';
 // WebRTC config: you don't have to change this for the example to work

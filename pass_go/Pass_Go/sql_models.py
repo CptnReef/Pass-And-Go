@@ -22,11 +22,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from sqlalchemy.ext.declarative import declarative_base
 
+from flask_login import UserMixin
 
 Base = declarative_base()
 
 
-class User(Base):
+class User(Base, UserMixin):
     """model for users"""
 
     __tablename__ = 'User'
@@ -39,13 +40,12 @@ class User(Base):
     modified_datetime = Column(DateTime(), onupdate=datetime.utcnow())
 
     email = Column(String(64), index=True, unique=True)
-    name = Column(String(64), index=True, unique=False)
-
+    username = Column(String(64), index=True, unique=False)
     password_hash = Column(String(128), index=True)
 
-    def __init__(self, email, password, name):
+    def __init__(self, email, password, username):
         self.code = 'US__' + uuid.uuid4().hex  
-        self.name = name
+        self.username = username
         self.email = email
         self.password_hash = generate_password_hash(password)
         

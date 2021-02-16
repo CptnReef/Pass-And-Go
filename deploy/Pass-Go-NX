@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name www.pass-go.net;
+    server_name pass-go.net www.pass-go.net;
 
     location / {
         proxy_pass http://localhost:5001;
@@ -14,7 +14,7 @@ server {
     server_name rtc.pass-go.net;
 
     location / {
-        proxy_pass http://localhost:8000;
+        proxy_pass http://localhost:5000;
         include /etc/nginx/proxy_params;
         proxy_redirect off;
     }
