@@ -1,10 +1,9 @@
 // Config variables: change them to point to your own servers
 const SIGNALING_SERVER_URL = 'https://rtc.pass-go.net/signaler';
-const TURN_SERVER_URL = 'turn:rtc.pass-go.net:3478';
+const TURN_SERVER_URL = 'rtc.pass-go.net:3478';
 const TURN_SERVER_USERNAME = 'username';
 const TURN_SERVER_CREDENTIAL = 'credential';
-// WebRTC config: you don't have to change this for the example to work
-// If you are testing on localhost, you can just use PC_CONFIG = {}
+
 const PC_CONFIG = {
   iceServers: [
       {
