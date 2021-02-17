@@ -47,8 +47,8 @@ def signup():
     # create signup form
     form = SignUpForm()
     if current_user:
-        pass
-        # # TODO redirect to user home page
+        return redirect(url_for('user.myprofile'))
+
         # return redirect(url_for('login'))
     # check if valid creation request and if this email has been used before
     # TODO some sort of error handling for the case where this email has been used before
@@ -62,8 +62,7 @@ def signup():
         db_session.commit()
         # create new session
         login_user(new_user)
-        # # TODO redirect to user home page
-        # return redirect(url_for('login'))
+        return redirect(url_for('user.myprofile'))
 
     return render_template('signup.html', form=form)
 
@@ -73,6 +72,7 @@ def logout():
         # invalidate session
         logout_user(current_user)
     return json.dump({'msg':'logout'}), 200
+
 
 
 @User_Blueprint.route('/', methods=['GET', 'POST'])
