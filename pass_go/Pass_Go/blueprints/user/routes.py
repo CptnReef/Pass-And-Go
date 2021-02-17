@@ -1,8 +1,7 @@
-import json
 from Pass_Go import db_session
 from Pass_Go.sql_models import (
     User, )
-from flask import Blueprint, request, render_template, redirect, url_for
+from flask import Blueprint, request, render_template, redirect, url_for, flash
 from flask_login import login_user, logout_user, current_user, login_required
 from .forms import LoginForm, SignUpForm, ResetPasswordForm
 
@@ -20,7 +19,7 @@ def home():
 
 
 @User_Blueprint.route('/myprofile', methods=['GET'])
-# @login_required
+@login_required
 def myprofile():
     form = ResetPasswordForm()
     return render_template("profile.html", form=form)
@@ -30,7 +29,7 @@ def myprofile():
 def login():
     form = LoginForm()
     # redirect if alread authed
-    if current_user:
+    if current_user.is_authenticated:
         return redirect(url_for('user.myprofile'))
 
     # Check if post request and if form is filled
@@ -40,7 +39,9 @@ def login():
         if user and user.check_password(form.password.data):
             # create new session
             login_user(user)
-            return redirect(url_for('user.myprofile'))
+            return redirect(url_for('main.home'))
+        else:
+            flash("Invalid login details")
 
     return render_template('login.html', form=form)
 
@@ -49,7 +50,7 @@ def login():
 def signup():
     # create signup form
     form = SignUpForm()
-    if current_user:
+    if current_user.is_authenticated:
         return redirect(url_for('user.myprofile'))
 
     # check if valid creation request and if this email has been used before
@@ -67,12 +68,11 @@ def signup():
     return render_template('signup.html', form=form)
 
 
-@User_Blueprint.route('/logout', methods=['POST'])
+@User_Blueprint.route('/logout', methods=['GET'])
+@login_required
 def logout():
-    if current_user:
-        # invalidate session
-        logout_user(current_user)
-    return json.dump({'msg': 'logout'}), 200
+    logout_user()
+    return redirect(url_for('user.login'))
 
 
 @User_Blueprint.route('/', methods=['GET', 'POST'])

@@ -6,7 +6,6 @@ import datetime
 from sqlalchemy.orm import sessionmaker
 from flask_login import LoginManager
 
-
 config = Config.get_instance()
 
 app = Flask(__name__, static_folder="static")
@@ -16,10 +15,7 @@ app.config['RTC_SERVICE_URL'] = config.RTC_SERVICE_URL
 app.config['SQLALCHEMY_DATABASE_URI'] = config.SQLALCHEMY_DATABASE_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-from Pass_Go.sql_models import (
-    User,
-    Base
-)
+from Pass_Go.sql_models import (User, Base)
 
 #### SQLALCHEMY SETUP ####
 db_engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'], echo=True)
@@ -33,6 +29,7 @@ db_session.commit()
 #### AUTH ####
 login_manager = LoginManager()
 login_manager.init_app(app)
+
 
 @login_manager.user_loader
 def load_user(user_code):

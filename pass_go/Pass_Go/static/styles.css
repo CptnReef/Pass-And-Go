@@ -192,3 +192,11 @@ body {
 .text-med {
     color: rgb(94, 93, 93);
 }
+
+.error {
+    color: rgb(238, 77, 77);
+    margin: 10px auto;
+    max-width: 200px;
+    word-wrap: break-word;
+    text-align: center;
+}

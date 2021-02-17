@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Length, Email, ValidationError
-from Pass_Go.models import User
+from Pass_Go.sql_models import User
 from Pass_Go import db_session
 
 
