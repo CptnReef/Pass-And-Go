@@ -21,7 +21,7 @@ def home():
 
 @User_Blueprint.route('/myprofile', methods=['GET'])
 # @login_required
-def profile():
+def myprofile():
     form = ResetPasswordForm()
     return render_template("profile.html", form=form)
 
