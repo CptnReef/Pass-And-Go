@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Length, Email, ValidationError
-from Pass_Go.sql_models import User
+from Pass_Go.models import User
+from Pass_Go import db_session
 
 
 class SignUpForm(FlaskForm):
@@ -21,7 +22,7 @@ class SignUpForm(FlaskForm):
     submit = SubmitField('Sign Up')
 
     def validate_email(self, email):
-        user = User.query.filter_by(email=email.data).first()
+        user = db_session.query(User).filter_by(email=self.email.data).first()
         if user:
             raise ValidationError(
                 'That email is already in use by a different account.')
