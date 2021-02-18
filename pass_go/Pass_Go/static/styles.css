@@ -124,10 +124,25 @@ body {
 }
 
 .muteButton {
-    width: 50%;
-    padding: 5px 20px;
-    
+    min-width: 60px;
+    min-height: 60px;
+
     text-align: center;
+    border-radius: 50px;
+
+    z-index: 101;
+    position: absolute;
+    bottom: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.muteButtonWrapper {
+    width: 100px;
+    display: flex;
+    justify-content: center;
 }
 
 .buttonOn {
