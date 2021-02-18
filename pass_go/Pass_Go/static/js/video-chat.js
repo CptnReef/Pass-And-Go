@@ -7,16 +7,16 @@ const TURN_SERVER_CREDENTIAL = 'credential';
 const PC_CONFIG = {
     iceServers: [
         {
-          urls: 'turn:' + TURN_SERVER_URL + '?transport=tcp',
-          username: TURN_SERVER_USERNAME,
-          credential: TURN_SERVER_CREDENTIAL
+            urls: 'turn:' + TURN_SERVER_URL + '?transport=tcp',
+            username: TURN_SERVER_USERNAME,
+            credential: TURN_SERVER_CREDENTIAL
         },
         {
-          urls: 'turn:' + TURN_SERVER_URL + '?transport=udp',
-          username: TURN_SERVER_USERNAME,
-          credential: TURN_SERVER_CREDENTIAL
+            urls: 'turn:' + TURN_SERVER_URL + '?transport=udp',
+            username: TURN_SERVER_USERNAME,
+            credential: TURN_SERVER_CREDENTIAL
         }
-      ]
+    ]
 };
 
 // Signaling methods
@@ -44,7 +44,7 @@ let sendData = (data) => {
 // WebRTC methods
 let pc;
 let localStream;
-let localStreamNoAudio;
+// let localStreamNoAudio;
 let remoteStreamElement = document.querySelector('#remoteStream');
 let localStreamElement = document.querySelector('#localStream');
 let getLocalStream = () => {
@@ -52,16 +52,21 @@ let getLocalStream = () => {
         .then((stream) => {
             console.log('Stream found');
             localStream = stream;
-            localStreamNoAudio = stream.clone();
 
-            var audioTrackList = localStreamNoAudio.getAudioTracks();
-            while (audioTrackList.length > 0) {
-                localStreamNoAudio.removeTrack(audioTrackList[0]);
-                audioTrackList = localStreamNoAudio.getAudioTracks();
-            }
-            console.log('Remove Audio from user display stream');
 
-            localStreamElement.srcObject = localStreamNoAudio;
+            // Creating a display stream without audio is not necessary
+            // because we can mute the local video player instead
+            // I'm leaving this here in case it's needed down the line
+
+            // localStreamNoAudio = stream.clone();
+            // var audioTrackList = localStreamNoAudio.getAudioTracks();
+            // while (audioTrackList.length > 0) {
+            //     localStreamNoAudio.removeTrack(audioTrackList[0]);
+            //     audioTrackList = localStreamNoAudio.getAudioTracks();
+            // }
+            // console.log('Remove Audio from user display stream');
+
+            localStreamElement.srcObject = localStream;
             console.log('Set self stream');
             // Connect after making sure that local stream is availble
             socket.connect();
@@ -139,3 +144,18 @@ let handleSignalingData = (data) => {
 
 // Start connection
 getLocalStream();
+
+
+function micMute() {
+    // Get audio tracks
+    audioTracks = localStream.getAudioTracks()
+    // Loop through each track and toggle it
+    audioTracks.forEach(track => track.enabled = !track.enabled)
+}
+
+function videoMute() {
+    // Get video tracks
+    videoTracks = localStream.getVideoTracks()
+    // Loop through each track and toggle it
+    videoTracks.forEach(track => track.enabled = !track.enabled)
+}
