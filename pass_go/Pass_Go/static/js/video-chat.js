@@ -53,7 +53,6 @@ let getLocalStream = () => {
             console.log('Stream found');
             localStream = stream;
 
-
             // Creating a display stream without audio is not necessary
             // because we can mute the local video player instead
             // I'm leaving this here in case it's needed down the line
@@ -146,16 +145,51 @@ let handleSignalingData = (data) => {
 getLocalStream();
 
 
-function micMute() {
-    // Get audio tracks
-    audioTracks = localStream.getAudioTracks()
-    // Loop through each track and toggle it
-    audioTracks.forEach(track => track.enabled = !track.enabled)
-}
+/* ----- Stream Control Button Logic ------ */
 
-function videoMute() {
+// get stream control buttons
+const cameraMuteButton = document.getElementById('cameraMute');
+const micMuteButton = document.getElementById('micMute');
+
+
+cameraMuteButton.addEventListener('click', function () {
+
+    // check if a stream track is active
+    if (localStream === undefined) {
+        return undefined
+    }
     // Get video tracks
     videoTracks = localStream.getVideoTracks()
     // Loop through each track and toggle it
     videoTracks.forEach(track => track.enabled = !track.enabled)
+
+    // change button appearance to reflect on/off status
+    toggleButtonActive(this, videoTracks[0].enabled)
+})
+
+micMuteButton.addEventListener('click', function () {
+
+    // check if a stream track is active
+    if (localStream === undefined) {
+        return undefined
+    }
+    // Get audio tracks
+    audioTracks = localStream.getAudioTracks()
+
+    // Loop through each track and toggle it
+    audioTracks.forEach(track => track.enabled = !track.enabled)
+
+    // change button appearance to reflect on/off status
+    toggleButtonActive(this, audioTracks[0].enabled)
+})
+
+function toggleButtonActive(elem, enabled) {
+    if (!enabled) {
+        elem.classList.remove("buttonOn")
+        elem.classList.add("buttonOff")
+    }
+    else {
+        elem.classList.remove("buttonOff")
+        elem.classList.add("buttonOn")
+    }
 }
