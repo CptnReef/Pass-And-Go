@@ -9,7 +9,7 @@
             <div class="content-window" id="game-window">
                 <div class="window-title row m-0 p-0">
                     <div class="col-6 offset-3 text-center">
-                        <p>Game Window</p>
+                        <p class="noselect">Game Window</p>
                     </div>
                     <div class="popout-button col-3 text-right">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -25,7 +25,7 @@
                 <div class="content-window" id="opponent-video-window">
                     <div class="window-title row m-0 p-0">
                         <div class="col-6 offset-3 text-center">
-                            <p>Other Player Video</p>
+                            <p class="noselect">Other Player Video</p>
                         </div>
                         <div class="popout-button col-3 text-right">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -42,7 +42,7 @@
                 <div class="content-window" id="user-video-window">
                     <div class="window-title row m-0 p-0">
                         <div class="col-6 offset-3 text-center">
-                            <p>User Video</p>
+                            <p class="noselect">User Video</p>
                         </div>
                         <div class="popout-button col-3 text-right">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -51,7 +51,26 @@
                             </svg>
                         </div>
                     </div>
-                    <video id="localStream" class="video-stream" autoplay playsinline></video>
+                    <div class="streamControls">
+                        <div class="muteButtonWrapper">
+                            <div id="cameraMute" class="muteButton buttonOn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path
+                                        d="M16 16c0 1.104-.896 2-2 2h-12c-1.104 0-2-.896-2-2v-8c0-1.104.896-2 2-2h12c1.104 0 2 .896 2 2v8zm8-10l-6 4.223v3.554l6 4.223v-12z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="muteButtonWrapper">
+                            <div id="micMute" class="muteButton buttonOn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path
+                                        d="M16 11c0 2.209-1.791 4-4 4s-4-1.791-4-4v-7c0-2.209 1.791-4 4-4s4 1.791 4 4v7zm4-2v2c0 4.418-3.582 8-8 8s-8-3.582-8-8v-2h2v2c0 3.309 2.691 6 6 6s6-2.691 6-6v-2h2zm-7 13v-2h-2v2h-4v2h10v-2h-4z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <video id="localStream" class="video-stream" autoplay playsinline muted></video>
+
                 </div>
             </div>
         </div>

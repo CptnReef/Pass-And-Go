@@ -117,6 +117,44 @@ body {
     width: 100%;
 }
 
+.streamControls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.muteButton {
+    min-width: 60px;
+    min-height: 60px;
+
+    text-align: center;
+    border-radius: 50px;
+
+    z-index: 101;
+    position: absolute;
+    bottom: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.muteButtonWrapper {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.buttonOn {
+    transition: background-color 0.25s ease;
+    background-color: rgb(95, 219, 126);
+}
+
+.buttonOff {
+    transition: background-color 0.25s ease;
+    background-color: rgb(238, 94, 94);
+}
+
 /* 3.0 Auth */
 .auth-section {
     display: flex;
@@ -142,3 +180,12 @@ body {
 
 
 /* 4.0 Utility Classes */
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
