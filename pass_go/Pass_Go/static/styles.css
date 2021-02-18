@@ -146,11 +146,13 @@ body {
 }
 
 .buttonOn {
-    background-color: rgb(92, 218, 92);
+    transition: background-color 0.25s ease;
+    background-color: rgb(95, 219, 126);
 }
 
 .buttonOff {
-    background-color: rgb(218, 80, 80);
+    transition: background-color 0.25s ease;
+    background-color: rgb(238, 94, 94);
 }
 
 /* 3.0 Auth */

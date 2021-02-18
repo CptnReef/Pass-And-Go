@@ -181,15 +181,27 @@ micMuteButton.addEventListener('click', function () {
 
     // change button appearance to reflect on/off status
     toggleButtonActive(this, audioTracks[0].enabled)
+    playToggleAudio(audioTracks[0].enabled)
 })
 
-function toggleButtonActive(elem, enabled) {
-    if (!enabled) {
-        elem.classList.remove("buttonOn")
-        elem.classList.add("buttonOff")
+function playToggleAudio(enabled) {
+    if (enabled) {
+        var audio = new Audio('./static/sounds/mic-unmute-beep.mp3');
+        audio.play();
     }
     else {
+        var audio = new Audio('./static/sounds/mic-mute-beep.mp3');
+        audio.play();
+    }
+}
+
+function toggleButtonActive(elem, enabled) {
+    if (enabled) {
         elem.classList.remove("buttonOff")
         elem.classList.add("buttonOn")
+    }
+    else {
+        elem.classList.remove("buttonOn")
+        elem.classList.add("buttonOff")
     }
 }
