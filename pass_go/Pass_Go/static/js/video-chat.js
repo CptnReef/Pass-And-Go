@@ -1,6 +1,6 @@
 // Config variables: change them to point to your own servers
-// const SIGNALING_SERVER_URL = 'https://rtc.pass-go.net/signaler';
-const SIGNALING_SERVER_URL = 'localhost:8000/signaler';
+// const SIGNALING_SERVER_URL = 'localhost:8000/signaler';
+const SIGNALING_SERVER_URL = 'https://rtc.pass-go.net/signaler';
 const TURN_SERVER_URL = 'rtc.pass-go.net:3478';
 const TURN_SERVER_USERNAME = 'username';
 const TURN_SERVER_CREDENTIAL = 'credential';
