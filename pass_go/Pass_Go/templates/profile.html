@@ -43,34 +43,39 @@
 
 </section>
 <section class="profile-setting-section">
-    <p class="fs-3 mb-0 mx-4">User Settings</p>
-    <div class="user-settings-container col-4">
+    <p class="fs-3 mb-0 mx-4 text-center">User Settings</p>
+    <div class="col-10 offset-1">
+        <div class="user-settings-container col-6 offset-3 mb-5">
 
-        <p class="fs-5 text-center">Reset Password</p>
-        <form action="" method="POST">
-            {{ form.csrf_token }}
-            <fieldset>
-                <div class="input-wrapper">
-                    {{ form.oldPassword.label(class_="form-label") }}
-                    {{ form.oldPassword(class_="form-control") }}
-                </div>
-                <ul>
-                    {% for error in form.oldPassword.errors %}
-                    <li class="error">{{ error }}</li>
-                    {% endfor %}
-                </ul>
+            <p class="fs-5"><strong>Reset Password:</strong></p>
 
-                <div class="input-wrapper">
-                    {{ form.newPassword.label(class_="form-label") }}
-                    {{ form.newPassword(class_="form-control") }}
-                </div>
-                <ul>
-                    {% for error in form.newPassword.errors %}
-                    <li class="error">{{ error }}</li>
-                    {% endfor %}
-                </ul>
-            </fieldset>
-        </form>
+            <form action="" method="POST">
+                {{ form.csrf_token }}
+                <fieldset>
+                    <div class="input-wrapper">
+                        {{ form.oldPassword.label(class_="form-label") }}
+                        {{ form.oldPassword(class_="form-control") }}
+                    </div>
+                    <ul>
+                        {% for error in form.oldPassword.errors %}
+                        <li class="error">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="input-wrapper">
+                        {{ form.newPassword.label(class_="form-label") }}
+                        {{ form.newPassword(class_="form-control") }}
+                    </div>
+                    <ul>
+                        {% for error in form.newPassword.errors %}
+                        <li class="error">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+
+                    {{ form.submit(class_="btn btn-primary") }}
+                </fieldset>
+            </form>
+        </div>
     </div>
 </section>
 
