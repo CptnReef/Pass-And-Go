@@ -145,6 +145,24 @@ body {
     justify-content: center;
 }
 
+.findMatchButton {
+    min-width: 60px;
+    min-height: 60px;
+
+    text-align: center;
+    border-radius: 50px;
+
+    z-index: 101;
+    margin-top: 10px;
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    background-color: rgb(139, 139, 139);
+}
+
 .buttonOn {
     transition: background-color 0.25s ease;
     background-color: rgb(95, 219, 126);

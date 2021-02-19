@@ -1,5 +1,6 @@
 // Config variables: change them to point to your own servers
-const SIGNALING_SERVER_URL = 'https://rtc.pass-go.net/signaler';
+// const SIGNALING_SERVER_URL = 'https://rtc.pass-go.net/signaler';
+const SIGNALING_SERVER_URL = 'localhost:8000/signaler';
 const TURN_SERVER_URL = 'rtc.pass-go.net:3478';
 const TURN_SERVER_USERNAME = 'username';
 const TURN_SERVER_CREDENTIAL = 'credential';
@@ -32,7 +33,6 @@ socket.on('data', (data) => {
 
 socket.on('ready', (data) => {
     console.log('Ready');
-    // Connection with signaling server is ready, and so is local stream
     createPeerConnection();
     sendOffer();
 });
@@ -150,7 +150,21 @@ getLocalStream();
 // get stream control buttons
 const cameraMuteButton = document.getElementById('cameraMute');
 const micMuteButton = document.getElementById('micMute');
+const findMatchButton = document.getElementById('findMatch')
 
+
+
+findMatchButton.addEventListener('click', function () {
+
+    // Is client ready to search 
+    let readyToConnect = false
+
+    if (readyToConnect) {
+        createPeerConnection();
+        sendOffer();
+    }
+
+})
 
 cameraMuteButton.addEventListener('click', function () {
 
