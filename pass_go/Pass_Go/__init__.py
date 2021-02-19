@@ -32,8 +32,8 @@ login_manager.init_app(app)
 
 
 @login_manager.user_loader
-def load_user(user_code):
-    return db_session.query(User).filter_by(code=user_code).first()
+def load_user(id):
+    return db_session.query(User).get(id)
 
 
 #### ADD ROUTING ####
