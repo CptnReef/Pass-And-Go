@@ -142,7 +142,7 @@ let handleSignalingData = (data) => {
 };
 
 // Start connection
-getLocalStream();
+// getLocalStream();
 
 
 /* ----- Stream Control Button Logic ------ */
@@ -153,15 +153,18 @@ const micMuteButton = document.getElementById('micMute');
 const findMatchButton = document.getElementById('findMatch')
 
 
-
+let count = 1;
 findMatchButton.addEventListener('click', function () {
-
-    // Is client ready to search 
-    let readyToConnect = false
-
-    if (readyToConnect) {
-        createPeerConnection();
-        sendOffer();
+    if (count === 1) {
+        getLocalStream();
+        count = 0
+    }
+    else {
+        socket.disconnect()
+        pc.close()
+        count = 1
+        console.log("disconnect")
+        console.log(pc)
     }
 
 })
