@@ -75,7 +75,6 @@ let getLocalStream = () => {
         });
 }
 
-
 let createPeerConnection = () => {
     try {
         pc = new RTCPeerConnection(PC_CONFIG);
@@ -83,6 +82,15 @@ let createPeerConnection = () => {
         pc.onaddstream = onAddStream;
         pc.addStream(localStream);
         console.log('PeerConnection created');
+
+        // triggered when peer disconnects
+        // may take up to 5 seconds to recognize disconnect
+        pc.oniceconnectionstatechange = function () {
+            if (pc.iceConnectionState == 'disconnected') {
+                console.log('Peer Disconnected');
+                toggleOpponentSearch(0)
+            }
+        }
     } catch (error) {
         console.error('PeerConnection failed: ', error);
     }
@@ -151,23 +159,42 @@ let handleSignalingData = (data) => {
 const cameraMuteButton = document.getElementById('cameraMute');
 const micMuteButton = document.getElementById('micMute');
 const findMatchButton = document.getElementById('findMatch')
+// is the user currently searching for an opponent
+let searchingForConnection = false
 
 
-let count = 1;
 findMatchButton.addEventListener('click', function () {
-    if (count === 1) {
+    if (searchingForConnection) {
+        toggleOpponentSearch(0)
+    }
+    else {
+        toggleOpponentSearch(1)
+    }
+    searchingForConnection = !searchingForConnection
+})
+
+function toggleOpponentSearch(state) {
+    if (state === 1) {
         getLocalStream();
-        count = 0
+
+        findMatchButton.classList.add("buttonOn")
+        findMatchButton.classList.remove("buttonOff")
+
+        console.log("looking for connection")
     }
     else {
         socket.disconnect()
-        pc.close()
-        count = 1
-        console.log("disconnect")
-        console.log(pc)
-    }
 
-})
+        if (pc !== undefined) {
+            pc.close()
+        }
+
+        findMatchButton.classList.add("buttonOff")
+        findMatchButton.classList.remove("buttonOn")
+
+        console.log("stopped searching")
+    }
+}
 
 cameraMuteButton.addEventListener('click', function () {
 
