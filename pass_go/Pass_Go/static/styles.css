@@ -114,6 +114,7 @@ body {
 /* 2.3 Video */
 
 .video-stream {
+    background-color: black;
     width: 100%;
 }
 
@@ -143,6 +144,24 @@ body {
     width: 100px;
     display: flex;
     justify-content: center;
+}
+
+.findMatchButton {
+    min-width: 60px;
+    min-height: 60px;
+
+    text-align: center;
+    border-radius: 50px;
+
+    z-index: 101;
+    margin-top: 10px;
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    background-color: rgb(139, 139, 139);
 }
 
 .buttonOn {

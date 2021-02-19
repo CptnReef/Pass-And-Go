@@ -1,5 +1,6 @@
 // Config variables: change them to point to your own servers
-const SIGNALING_SERVER_URL = 'https://rtc.pass-go.net/signaler';
+// const SIGNALING_SERVER_URL = 'https://rtc.pass-go.net/signaler';
+const SIGNALING_SERVER_URL = 'localhost:8000/signaler';
 const TURN_SERVER_URL = 'rtc.pass-go.net:3478';
 const TURN_SERVER_USERNAME = 'username';
 const TURN_SERVER_CREDENTIAL = 'credential';
@@ -32,7 +33,6 @@ socket.on('data', (data) => {
 
 socket.on('ready', (data) => {
     console.log('Ready');
-    // Connection with signaling server is ready, and so is local stream
     createPeerConnection();
     sendOffer();
 });
@@ -54,7 +54,7 @@ let getLocalStream = () => {
             localStream = stream;
 
             // Creating a display stream without audio is not necessary
-            // because we can mute the local video player instead
+            // because we can mute the local video player element instead
             // I'm leaving this here in case it's needed down the line
 
             // localStreamNoAudio = stream.clone();
@@ -67,14 +67,11 @@ let getLocalStream = () => {
 
             localStreamElement.srcObject = localStream;
             console.log('Set self stream');
-            // Connect after making sure that local stream is availble
-            socket.connect();
         })
         .catch(error => {
             console.error('Stream not found: ', error);
         });
 }
-
 
 let createPeerConnection = () => {
     try {
@@ -83,6 +80,15 @@ let createPeerConnection = () => {
         pc.onaddstream = onAddStream;
         pc.addStream(localStream);
         console.log('PeerConnection created');
+
+        // triggered when peer disconnects
+        // may take up to 5 seconds to recognize disconnect
+        pc.oniceconnectionstatechange = function () {
+            if (pc.iceConnectionState == 'disconnected') {
+                console.log('Peer Disconnected');
+                toggleOpponentSearch(0)
+            }
+        }
     } catch (error) {
         console.error('PeerConnection failed: ', error);
     }
@@ -141,16 +147,66 @@ let handleSignalingData = (data) => {
     }
 };
 
-// Start connection
+// Get user camera and mic stream
 getLocalStream();
 
 
-/* ----- Stream Control Button Logic ------ */
+/* ----- Stream Control & Opponent Search Button Logic ------ */
 
 // get stream control buttons
 const cameraMuteButton = document.getElementById('cameraMute');
 const micMuteButton = document.getElementById('micMute');
+const findMatchButton = document.getElementById('findMatch')
+// is the user currently searching for an opponent
+let searchingForConnection = false
 
+
+findMatchButton.addEventListener('click', function () {
+    if (searchingForConnection) {
+        toggleOpponentSearch(0)
+    }
+    else {
+        toggleOpponentSearch(1)
+    }
+
+})
+
+function toggleOpponentSearch(state) {
+    if (state === 1) {
+
+        // Connect after making sure that local stream is available
+        console.log(localStream)
+        if (localStream !== undefined) {
+            // Tell the server to search for a peer connection
+            socket.connect();
+
+            findMatchButton.classList.add("buttonOn")
+            findMatchButton.classList.remove("buttonOff")
+
+            console.log("looking for connection")
+
+            searchingForConnection = !searchingForConnection
+        }
+        else {
+            alert("Please enable your camera and microphone.")
+        }
+    }
+    else {
+        socket.disconnect()
+
+        // close the rtc connection if there is one
+        if (pc !== undefined) {
+            pc.close()
+        }
+
+        findMatchButton.classList.add("buttonOff")
+        findMatchButton.classList.remove("buttonOn")
+
+        console.log("stopped searching")
+
+        searchingForConnection = !searchingForConnection
+    }
+}
 
 cameraMuteButton.addEventListener('click', function () {
 
