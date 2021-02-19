@@ -114,6 +114,7 @@ body {
 /* 2.3 Video */
 
 .video-stream {
+    background-color: black;
     width: 100%;
 }
 

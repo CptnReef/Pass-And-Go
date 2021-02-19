@@ -54,7 +54,7 @@ let getLocalStream = () => {
             localStream = stream;
 
             // Creating a display stream without audio is not necessary
-            // because we can mute the local video player instead
+            // because we can mute the local video player element instead
             // I'm leaving this here in case it's needed down the line
 
             // localStreamNoAudio = stream.clone();
@@ -67,8 +67,6 @@ let getLocalStream = () => {
 
             localStreamElement.srcObject = localStream;
             console.log('Set self stream');
-            // Connect after making sure that local stream is availble
-            socket.connect();
         })
         .catch(error => {
             console.error('Stream not found: ', error);
@@ -149,11 +147,11 @@ let handleSignalingData = (data) => {
     }
 };
 
-// Start connection
-// getLocalStream();
+// Get user camera and mic stream
+getLocalStream();
 
 
-/* ----- Stream Control Button Logic ------ */
+/* ----- Stream Control & Opponent Search Button Logic ------ */
 
 // get stream control buttons
 const cameraMuteButton = document.getElementById('cameraMute');
@@ -170,21 +168,33 @@ findMatchButton.addEventListener('click', function () {
     else {
         toggleOpponentSearch(1)
     }
-    searchingForConnection = !searchingForConnection
+
 })
 
 function toggleOpponentSearch(state) {
     if (state === 1) {
-        getLocalStream();
 
-        findMatchButton.classList.add("buttonOn")
-        findMatchButton.classList.remove("buttonOff")
+        // Connect after making sure that local stream is available
+        console.log(localStream)
+        if (localStream !== undefined) {
+            // Tell the server to search for a peer connection
+            socket.connect();
 
-        console.log("looking for connection")
+            findMatchButton.classList.add("buttonOn")
+            findMatchButton.classList.remove("buttonOff")
+
+            console.log("looking for connection")
+
+            searchingForConnection = !searchingForConnection
+        }
+        else {
+            alert("Please enable your camera and microphone.")
+        }
     }
     else {
         socket.disconnect()
 
+        // close the rtc connection if there is one
         if (pc !== undefined) {
             pc.close()
         }
@@ -193,6 +203,8 @@ function toggleOpponentSearch(state) {
         findMatchButton.classList.remove("buttonOn")
 
         console.log("stopped searching")
+
+        searchingForConnection = !searchingForConnection
     }
 }
 
