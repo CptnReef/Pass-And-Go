@@ -1,7 +1,7 @@
 console.log(gsap)
 
 const canvas = document.querySelector('canvas')
-//
+
 const c = canvas.getContext('2d')
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
@@ -9,6 +9,7 @@ canvas.height = window.innerHeight
 const scored = document.querySelector('#scored')
 const startGameBtn = document.querySelector('#startGameBtn')
 const modalEl = document.querySelector('#modalEl')
+const totalScore = document.querySelector('#ttlScore')
 
 class Player {
     constructor(x,y,radius,color) {
@@ -111,10 +112,21 @@ class Particle {
 const x = canvas.width / 2
 const y = canvas.height / 2
 
-const player1 = new Player(x, y, 10, 'white')
-const projectiles = []
-const enemies = []
-const particles = []
+let player1 = new Player(x, y, 10, 'white')
+let projectiles = []
+let enemies = []
+let particles = []
+
+//This func holds the Restart value
+function init() {
+    player1 = new Player(x, y, 10, 'white')
+    projectiles = []
+    enemies = []
+    particles = []
+    score = 0
+    scored.innerHTML = score
+    totalScore.innerHTML = score
+}
 
 player1.draw()
 //==================================================================================================//
@@ -181,9 +193,11 @@ function animate() {
     enemies.forEach((enemy, index) => {
         enemy.update()
         const dist = Math.hypot(player1.x - enemy.x, player1.y - enemy.y)    
-        //player touches    
+        //player touches    (((END GAME)))
         if (dist - enemy.radius - player1.radius < 1) {
-                cancelAnimationFrame(animationID) 
+                cancelAnimationFrame(animationID)
+                modalEl.style.display = 'flex'
+                totalScore.innerHTML = score
             }
             projectiles.forEach((projectile, projectileIndex) => {
             const dist = Math.hypot(projectile.x - enemy.x, projectile.y - enemy.y)
@@ -241,7 +255,7 @@ addEventListener('click', (event) => {
 })
 
 startGameBtn.addEventListener('click', () => {
-
+    init()
     animate()
     spawnEnemies()
     modalEl.style.display = 'none'
