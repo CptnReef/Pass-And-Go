@@ -21,12 +21,10 @@
                 <!-- Game Container -->
                 <div class="game-container">
                     {% for game in games %}
-                    <div class="gameTile">
+                    <div class="gameTile" id="{{game.title}}">
                         <p class="m-0 mb-1">{{game.title}}</p>
                         <div class="game-image-wrapper">
                             <img src="{{ url_for('static', filename=game.imageUrl) }}" class="gameImage" />
-                            <script>let {{ game.title }} = "{{ url_for('static', filename = "game.title") }}"</script>
-                            <script> console.log(window["{{ game.title }}"])</script>
                         </div>
                     </div>
                     {% endfor %}
@@ -117,5 +115,11 @@
 
 <!-- Video Chat Manager -->
 <script src="{{ url_for('static', filename='js/video-chat.js') }}"></script>
+
+<!-- Axios -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<!-- Game Manager -->
+<script src="{{ url_for('static', filename='js/game-manager.js') }}"></script>
 
 {% endblock scripts %}

@@ -216,7 +216,7 @@ body {
 
     border-radius: 10px;
     background-color:rgb(228, 228, 228);
-
+    z-index: 101;
     margin: 20px;
 }
 
