@@ -226,6 +226,8 @@ body {
 
     background-size: cover;
     background-position: center;
+
+    border-radius: 5px;
 }
 
 /* 5.0 Utility Classes */

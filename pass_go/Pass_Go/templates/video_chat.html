@@ -22,9 +22,12 @@
                 <div class="game-container">
                     {% for game in games %}
                     <div class="gameTile">
-                        {{game.title}}
-                        <img src="{{ url_for('static', filename=game.imageUrl) }}" class="gameImage" />
-                        <a href="/">Game Link</a>
+                        <p class="m-0 mb-1">{{game.title}}</p>
+                        <div class="game-image-wrapper">
+                            <img src="{{ url_for('static', filename=game.imageUrl) }}" class="gameImage" />
+                            <script>let {{ game.title }} = "{{ url_for('static', filename = "game.title") }}"</script>
+                            <script> console.log(window["{{ game.title }}"])</script>
+                        </div>
                     </div>
                     {% endfor %}
                 </div>
