@@ -19,6 +19,20 @@ for (let i = 0; i < tiles.length; i++) {
                 // add game js file to document
                 document.head.appendChild(gameScript);
 
+
+                // Remove game library display
+                let gameChooser = document.getElementById("game-container")
+                gameChooser.classList.add("hidden")
+
+                // create game canvas
+                let canvas = document.createElement("canvas")
+                canvas.width = 400
+                canvas.height = 400
+                // find parent for canvas
+                let canvasContainer = document.getElementById("canvas-container")
+                // add the canvas to the page
+                canvasContainer.appendChild(canvas)
+
             })
             .catch(error => console.error(error));
     })
