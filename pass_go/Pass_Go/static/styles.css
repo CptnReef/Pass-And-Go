@@ -197,8 +197,38 @@ body {
     padding: 5px 40px;
 }
 
+/* 4.0 Game Window */
+.game-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 
-/* 4.0 Utility Classes */
+.gameTile {
+    width: 200px;
+    height: 200px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+    background-color:rgb(228, 228, 228);
+
+    margin: 20px;
+}
+
+.gameImage {
+    width: 150px;
+    height: 150px;
+
+    background-size: cover;
+    background-position: center;
+}
+
+/* 5.0 Utility Classes */
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */

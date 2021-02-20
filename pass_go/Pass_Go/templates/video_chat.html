@@ -18,6 +18,16 @@
                         </svg>
                     </div>
                 </div>
+                <!-- Game Container -->
+                <div class="game-container">
+                    {% for game in games %}
+                    <div class="gameTile">
+                        {{game.title}}
+                        <img src="{{ url_for('static', filename=game.imageUrl) }}" class="gameImage" />
+                        <a href="/">Game Link</a>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
         <div class="window-container-column">
