@@ -26,10 +26,13 @@ for (let i = 0; i < tiles.length; i++) {
 
                 // create game canvas
                 let canvas = document.createElement("canvas")
-                canvas.width = 400
-                canvas.height = 400
+
                 // find parent for canvas
                 let canvasContainer = document.getElementById("canvas-container")
+
+                canvas.width = canvasContainer.parentElement.offsetWidth
+                canvas.height = canvasContainer.parentElement.offsetHeight
+
                 // add the canvas to the page
                 canvasContainer.appendChild(canvas)
 
