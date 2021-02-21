@@ -3,7 +3,8 @@ const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d')
 
 const width = canvas.width
-const height = canvas.width / 2
+canvas.height = canvas.width / 6
+const height = canvas.height
 // background square
 drawRect(0, 0, width, height, "#222222")
 

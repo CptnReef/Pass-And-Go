@@ -225,6 +225,10 @@ body {
     border-radius: 5px;
 }
 
+#canvas {
+    width: 100%;
+}
+
 /* 5.0 Utility Classes */
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */

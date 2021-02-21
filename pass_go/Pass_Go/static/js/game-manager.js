@@ -32,6 +32,7 @@ for (let i = 0; i < tiles.length; i++) {
 
                 canvas.width = canvasContainer.parentElement.offsetWidth
                 canvas.height = canvasContainer.parentElement.offsetHeight
+                canvas.id = "canvas"
 
                 // add the canvas to the page
                 canvasContainer.appendChild(canvas)
