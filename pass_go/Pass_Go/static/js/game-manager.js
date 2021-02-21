@@ -13,29 +13,43 @@ for (let i = 0; i < tiles.length; i++) {
                 let url = response.data.url
 
                 //create game js file
-                let gameScript = document.createElement("script")
-                gameScript.type = "text/javascript"
-                gameScript.src = url
+                // let gameScript = document.createElement("script")
+                // gameScript.type = "text/javascript"
+                // gameScript.src = url
                 // add game js file to document
-                document.head.appendChild(gameScript);
+                //document.head.appendChild(gameScript);
+
 
 
                 // Remove game library display
                 let gameChooser = document.getElementById("game-container")
                 gameChooser.classList.add("hidden")
 
-                // create game canvas
-                let canvas = document.createElement("canvas")
-
                 // find parent for canvas
                 let canvasContainer = document.getElementById("canvas-container")
 
-                canvas.width = canvasContainer.parentElement.offsetWidth
-                canvas.height = canvasContainer.parentElement.offsetHeight
-                canvas.id = "canvas"
+                async function fetchHtmlAsText(url) {
+                    canvasContainer.innerHTML = await (await fetch(url)).text();
+                }
+                fetchHtmlAsText(url)
 
-                // add the canvas to the page
-                canvasContainer.appendChild(canvas)
+                // Canvas Only Games
+                // // Remove game library display
+                // let gameChooser = document.getElementById("game-container")
+                // gameChooser.classList.add("hidden")
+
+                // // create game canvas
+                // let canvas = document.createElement("canvas")
+
+                // // find parent for canvas
+                // let canvasContainer = document.getElementById("canvas-container")
+
+                // canvas.width = canvasContainer.parentElement.offsetWidth
+                // canvas.height = canvasContainer.parentElement.offsetHeight
+                // canvas.id = "canvas"
+
+                // // add the canvas to the page
+                // canvasContainer.appendChild(canvas)
 
             })
             .catch(error => console.error(error));

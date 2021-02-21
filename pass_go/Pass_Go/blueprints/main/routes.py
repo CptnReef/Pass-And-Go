@@ -33,6 +33,6 @@ def get_game_url(gameindex):
     gameDirectoryList = os.listdir("./Pass_Go/static/games")
     game = gameDirectoryList[int(gameindex)]
     game_url = json.dumps(
-        {"url": url_for("static", filename=f"games/{game}/game.js")})
+        {"url": url_for("static", filename=f"games/{game}/game.html")})
 
     return game_url
