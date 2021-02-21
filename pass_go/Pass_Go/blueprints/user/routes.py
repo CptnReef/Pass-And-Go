@@ -70,35 +70,3 @@ def logout():
         logout_user(current_user)
     return json.dump({'msg':'logout'}), 200
 
-
-
-@User_Blueprint.route('/', methods=['GET', 'POST'])
-def create(changename_id):
-    if request.method == 'POST':
-        pass
-    else:
-        pass
-    pass
-
-
-@User_Blueprint.route('/', methods=['GET'])
-def read(changename_id):
-    if request.method == 'POST':
-        pass
-    else:
-        pass
-    pass
-
-
-@User_Blueprint.route('/', methods=['GET', 'POST'])
-def update(changename_id):
-    if request.method == 'POST':
-        pass
-    else:
-        pass
-    pass
-
-
-@User_Blueprint.route('/', methods=['POST'])
-def delete(changename_id):
-    pass

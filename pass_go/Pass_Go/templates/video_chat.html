@@ -6,6 +6,7 @@
 
     <div class="window-container-row">
         <div class="game-window-wrapper">
+
             <div class="content-window" id="game-window">
                 <div class="window-title row m-0 p-0">
                     <div class="col-6 offset-3 text-center">
@@ -17,8 +18,35 @@
                             <path d="M0 3v18h24v-18h-24zm22 16h-4v-10h-16v-4h20v14z" />
                         </svg>
                     </div>
+                    <!-- Listing Existing Games in a row of 3-->
+                    
+                    <div class="game-container row justify-content-right mt-3 text-center text-secondary" id="game-container">
+                        {% for item in list %}
+                        <div class="col-3 col-sm-3 p-1">                        
+                            <div class="card bg-light" (click)="onCardClick()" style=" max-height: 12rem; max-width: 18rem;">
+                                <div class="card-header">Game Title</div>
+                                <span onclick="{{item}}">{{item}}</span> 
+                                <a href="#"> Game {{item}}</a>                               
+                                <div class="card-body">
+                                <!-- Click 2 Enable False-->
+                                </div>
+                            </div>                        
+                        </div>
+                        <!-- Force next columns to break to new line -->
+                        {% if counter == 3 %}
+                        <div class="w-100"></div>                            
+                        {% endif %}                                             
+                        {% endfor %}
+
+                        {% if onclick is true %}
+                        {% include game2 %}
+                        {% endif %}
+                    </div>
+                    <!---------------------------------------->
+
                 </div>
             </div>
+
         </div>
         <div class="window-container-column">
             <div class="video-window-wrapper">
@@ -104,5 +132,7 @@
 
 <!-- Video Chat Manager -->
 <script src="{{ url_for('static', filename='js/video-chat.js') }}"></script>
+
+<!-- Select Game -->
 
 {% endblock scripts %}
