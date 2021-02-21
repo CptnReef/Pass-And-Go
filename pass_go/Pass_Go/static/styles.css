@@ -206,26 +206,13 @@ body {
 }
 
 .gameTile {
-    width: 200px;
-    height: 200px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 10px;
-    background-color:rgb(228, 228, 228);
+    width: 18rem;
     z-index: 101;
-    margin: 20px;
-
-    transition: all 0.5s;
 }
 
 .gameTile:hover {
     transition: all 0.5s;
-    background-color: rgb(139, 139, 139);
-    color: white;
+    box-shadow: 2px 2px 5px gray;
 }
 
 .gameImage {
