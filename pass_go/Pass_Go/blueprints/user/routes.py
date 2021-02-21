@@ -26,9 +26,8 @@ def login():
     form = LoginForm()
     # redirect if alread authed
     if current_user:
-        pass
-        # TODO redirect to user home page
-        # return redirect(url_for('login'))
+        return redirect(url_for('user.myprofile'))
+        
     # Check if post request and if form is filled
     if request.method=='POST' and form.validate_on_submit():
         user = db_session.query(User).filter_by(email=form.email.data).first()
@@ -36,8 +35,7 @@ def login():
         if user and user.check_password(form.password.data):
             # create new session
             login_user(user)
-            # TODO redirect to user home page
-            # return redirect(url_for('login'))
+            return redirect(url_for('user.myprofile'))
 
     return render_template('login.html', form=form)
 
@@ -47,11 +45,10 @@ def signup():
     # create signup form
     form = SignUpForm()
     if current_user:
-        pass
-        # # TODO redirect to user home page
-        # return redirect(url_for('login'))
+        return redirect(url_for('user.myprofile'))
+        
+
     # check if valid creation request and if this email has been used before
-    # TODO some sort of error handling for the case where this email has been used before
     if request.method=='POST' and form.validate_on_submit() and len(db_session.query(User).filter_by(email=form.email.data).all()) < 1:
         new_user = User(
             email=form.email.data,
@@ -62,8 +59,7 @@ def signup():
         db_session.commit()
         # create new session
         login_user(new_user)
-        # # TODO redirect to user home page
-        # return redirect(url_for('login'))
+        return redirect(url_for('user.myprofile'))
 
     return render_template('signup.html', form=form)
 
@@ -73,6 +69,7 @@ def logout():
         # invalidate session
         logout_user(current_user)
     return json.dump({'msg':'logout'}), 200
+
 
 
 @User_Blueprint.route('/', methods=['GET', 'POST'])
