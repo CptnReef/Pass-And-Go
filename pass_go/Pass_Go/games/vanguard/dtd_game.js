@@ -1,4 +1,4 @@
-console.log(gsap)
+document.write('<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"><div class="fixed text-white text-sm ml-2 mt-1 select-none"><span>Score: </span><span id="scored">0</span></div><div class="fixed inset-0 flex items-center justify-center" id="modalEl"><div class="bg-white max-w-md w-full p-6 text-center rounded-md"><h1 class="text-4xl font-bold select-none leading-none" id="ttlScore">0</h1><p class="text-sm text-gray-500 mb-3 select-none">Points</p><div><button class="bg-blue-600 text-sm text-white w-full py-3 rounded-full select-none" id="startGameBtn">Start Game</button></div><button></button></div></div><canvas></canvas><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js" integrity="sha512-1dalHDkG9EtcOmCnoCjiwQ/HEB5SDNqw8d4G2MKoNwjiwMNeBAkudsBCmSlMnXdsH8Bm0mOd3tl/6nL5y0bMaQ==" crossorigin="anonymous"></script>')
 
 const canvas = document.querySelector('canvas')
 
@@ -68,9 +68,11 @@ class Enemy {
     }
 
     draw() {
+        let match = Math.random() > Math.random() ? -1 : 1
+        let mix = Math.random() > Math.random() ? 1 : -1
         
         c.beginPath()
-        c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
+        // c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
         c.fillStyle = this.color
         //              top-edge
         c.moveTo(this.x + 30, this.y - 30);
