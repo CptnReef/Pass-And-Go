@@ -42,7 +42,7 @@ let sendData = (data) => {
 };
 
 // WebRTC methods
-let pc;
+let pc = new RTCPeerConnection(PC_CONFIG);
 let localStream;
 // let localStreamNoAudio;
 let remoteStreamElement = document.querySelector('#remoteStream');
