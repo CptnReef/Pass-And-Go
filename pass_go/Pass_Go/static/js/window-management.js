@@ -2,7 +2,7 @@
 
 const popoutButtons = document.querySelectorAll(".popout-button");
 
-console.log(popoutButtons)
+// console.log(popoutButtons)
 
 popoutButtons.forEach(function (elem, index) {
     elem.addEventListener("click", function () {

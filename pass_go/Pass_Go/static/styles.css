@@ -102,7 +102,7 @@ body {
 	position: absolute;
 	margin: 0;
 	padding: 0;
-	z-index: 98;
+	z-index: -100;
 
 	-webkit-transition: all 0.25s ease-in-out;
 	-moz-transition: all 0.25s ease-in-out;
@@ -238,12 +238,53 @@ body {
     background-color: aliceblue;
 }
 
-/* 5.0 Utility Classes */
-.flex-row {
+/* 4.0 Game Window */
+.game-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+
+.gameTile {
+    width: 18rem;
+    z-index: 101;
+}
+
+.gameTile:hover {
+    transition: all 0.5s;
+    box-shadow: 2px 2px 5px gray;
+}
+
+.gameImage {
+    width: 150px;
+    height: 150px;
+
+    background-size: cover;
+    background-position: center;
+
+    border-radius: 5px;
+}
+
+#canvas {
+    width: 100%;
+}
+
+/* 5.0 Utility Classes */
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.hidden {
+    width: 0;
+    display: none;
 }
 
 .text-med {
@@ -258,12 +299,9 @@ body {
     text-align: center;
 }
 
-.noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
 }
