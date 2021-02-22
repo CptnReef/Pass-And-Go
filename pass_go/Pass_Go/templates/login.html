@@ -32,6 +32,13 @@
                 <div class="input-wrapper">
                     {{ form.submit(class_="btn btn-primary") }}
                 </div>
+
+                {% for message in get_flashed_messages() %}
+                <div>
+                    <p class="error">{{ message }}</p>
+                </div>
+                {% endfor %}
+
             </fieldset>
         </form>
     </div>
