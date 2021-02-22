@@ -17,67 +17,28 @@
                             <path d="M0 3v18h24v-18h-24zm22 16h-4v-10h-16v-4h20v14z" />
                         </svg>
                     </div>
-                    <!--Games Sectioning Off-->
+                    <!--Games Library -->
                     <div class="container m-1 text-center">
                         <div class="row align-items-start">
-                          <div class="col">
-                            <div class="card border-light mb-3" style="max-width: 18rem;">
-                                <div class="card-header text-secondary"><a href="#" class="select-none">GAME 1</a></div>
-                                <div class="card-body">
-                                    <h5 class="card-title">{ game title }</h5>
-                                    <p class="card-text">EMPTY</p>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col">
-                            <div class="card border-light mb-3" style="max-width: 18rem;">
-                                <div class="card-header text-secondary"><a href="#" class="select-none">GAME 2</a></div>
-                                <div class="card-body">
-                                    <h5 class="card-title">{ game title }</h5>
-                                    <p class="card-text">EMPTY</p>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col">
-                            <div class="card border-light mb-3" style="max-width: 18rem;">
-                                <div class="card-header text-secondary">GAME 3</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">{ game title }</h5>
-                                    <p class="card-text text-center">EMPTY</p>
-                                  </div>
-                              </div>
-                          </div>
-                        </div>
-                        <div class="row align-items-center">
-                          <div class="col">
-                            <div class="card border-light mb-3" style="max-width: 18rem;">
-                                <div class="card-header text-secondary">GAME 4</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">{ game title }</h5>
-                                    <p class="card-text text-center">EMPTY</p>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col">
-                            <div class="card border-light mb-3" style="max-width: 18rem;">
-                                <div class="card-header text-secondary">GAME 5</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">{ game title }</h5>
-                                    <p class="card-text text-center">EMPTY</p>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col">
-                            <div class="card border-light mb-3" style="max-width: 18rem;">
-                                <div class="card-header text-secondary">GAME 6</div>
-                                <div class="card-body">
-                                  <h5 class="card-title">{ game title }</h5>
-                                  <p class="card-text text-center">EMPTY</p>
+                            <div class="game-container" id="game-container">
+                                {% for game in games %}
+                                <div class="card border-light m-3 gameTile">
+                                    <div class="card-header text-secondary">{{game.title}}
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="game-image-wrapper">
+                                            <img src="{{ url_for('static', filename=game.imageUrl) }}"
+                                                class="gameImage" />
+                                        </div>
+                                    </div>
                                 </div>
-                              </div>
-                          </div>
+                                {% endfor %}
+                            </div>
                         </div>
-                      </div>
+                    </div>
+                </div>
+                <div id="canvas-container">
+                    <!-- canvas is dynamically inserted here -->
                 </div>
             </div>
         </div>
@@ -165,5 +126,11 @@
 
 <!-- Video Chat Manager -->
 <script src="{{ url_for('static', filename='js/video-chat.js') }}"></script>
+
+<!-- Axios -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<!-- Game Manager -->
+<script src="{{ url_for('static', filename='js/game-manager.js') }}"></script>
 
 {% endblock scripts %}
