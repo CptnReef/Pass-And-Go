@@ -10,48 +10,55 @@ for (let i = 0; i < tiles.length; i++) {
         axios.get(`/get_game_url/${i}`)
             .then(response => {
                 // get response data
-                let url = response.data.url
+                let jsFiles = response.data.js
+                let htmlFile = response.data.html
 
-                //create game js file
-                // let gameScript = document.createElement("script")
-                // gameScript.type = "text/javascript"
-                // gameScript.src = url
-                // add game js file to document
-                //document.head.appendChild(gameScript);
-
-
-
-                // Remove game library display
-                let gameChooser = document.getElementById("game-container")
-                gameChooser.classList.add("hidden")
-
-                // find parent for canvas
-                let canvasContainer = document.getElementById("canvas-container")
-
-                async function fetchHtmlAsText(url) {
-                    canvasContainer.innerHTML = await (await fetch(url)).text();
-                }
-                fetchHtmlAsText(url)
-
-                // Canvas Only Games
-                // // Remove game library display
-                // let gameChooser = document.getElementById("game-container")
-                // gameChooser.classList.add("hidden")
-
-                // // create game canvas
-                // let canvas = document.createElement("canvas")
-
-                // // find parent for canvas
-                // let canvasContainer = document.getElementById("canvas-container")
-
-                // canvas.width = canvasContainer.parentElement.offsetWidth
-                // canvas.height = canvasContainer.parentElement.offsetHeight
-                // canvas.id = "canvas"
-
-                // // add the canvas to the page
-                // canvasContainer.appendChild(canvas)
+                // Get container for custom html
+                let container = document.getElementById("canvas-container")
+                // appendHTMLToElem(htmlFile, container).then(() => appendJavascript(jsFiles));
+                appendHTMLToElem(htmlFile, container).then(
+                    () => appendCanvas()).then(
+                        () => appendJavascript(jsFiles));
 
             })
             .catch(error => console.error(error));
     })
+}
+
+function appendJavascript(jsFiles) {
+    //create game js file
+    for (let j = 0; j < jsFiles.length; j++) {
+
+        let gameScript = document.createElement("script")
+        gameScript.type = "text/javascript"
+        gameScript.src = jsFiles[j]
+        // add game js file to document
+        document.head.appendChild(gameScript);
+    }
+}
+
+// Append Custom HTML
+async function appendHTMLToElem(htmlFile, elem) {
+    elem.innerHTML = await (await fetch(htmlFile)).text();
+}
+
+// Append The Canvas Element
+function appendCanvas() {
+
+    // Remove game library display
+    let gameChooser = document.getElementById("game-container")
+    gameChooser.classList.add("hidden")
+
+    // create game canvas
+    let canvas = document.createElement("canvas")
+
+    // find parent for canvas
+    let canvasContainer = document.getElementById("canvas-container")
+
+    canvas.width = canvasContainer.parentElement.offsetWidth
+    canvas.height = canvasContainer.parentElement.offsetHeight
+    canvas.id = "canvas"
+
+    // add the canvas to the page
+    canvasContainer.appendChild(canvas)
 }

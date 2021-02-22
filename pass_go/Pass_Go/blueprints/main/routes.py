@@ -30,9 +30,25 @@ def go():
 @Main_Blueprint.route('/get_game_url/<gameindex>', methods=['GET'])
 def get_game_url(gameindex):
 
+    # TODO loop through every file in the folder
+    # Then add js files to an array
+    # Then add html files to an array
+    # Then send both of those arrays as a json object back
+
     gameDirectoryList = os.listdir("./Pass_Go/static/games")
     game = gameDirectoryList[int(gameindex)]
-    game_url = json.dumps(
-        {"url": url_for("static", filename=f"games/{game}/game.html")})
+
+    gameFileList = os.listdir(f"./Pass_Go/static/games/{game}")
+
+    htmlFile = ""
+    jsFiles = []
+
+    for file in gameFileList:
+        if file.endswith('.js'):
+            jsFiles.append(url_for("static", filename=f"games/{game}/{file}"))
+        elif file.endswith('.html'):
+            htmlFile = url_for("static", filename=f"games/{game}/{file}")
+
+    game_url = json.dumps({"js": jsFiles, "html": htmlFile})
 
     return game_url
