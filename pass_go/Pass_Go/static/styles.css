@@ -305,3 +305,21 @@ body {
     justify-content: center;
     flex-wrap: wrap;
 }
+
+/* Game: "Dance To Death" Style Sheet*/
+#container {
+    position: absolute;
+    /* border: 3px solid green; */
+    display: flex;
+    top: 50%;
+    left: 36%;
+    margin: -25px 0 0 -25px; /* apply negative top and left margins to truly center the element */
+    transform: translate(-50%, -50%);
+}
+
+#container canvas, #overlay {
+    position: absolute;
+
+    /* border: 3px solid green; */
+}
+

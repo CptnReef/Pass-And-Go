@@ -1,14 +1,13 @@
-
 const canvas = document.querySelector('canvas')
-
 const c = canvas.getContext('2d')
-canvas.width = window.innerWidth
-canvas.height = window.innerHeight
 
-const scored = document.querySelector('#scored')
+c.width = window.innerWidth
+c.height = window.innerHeight
+
+let scored = document.querySelector('#scored')
 const startGameBtn = document.querySelector('#startGameBtn')
-const modalEl = document.querySelector('#modalEl')
-const totalScore = document.querySelector('#ttlScore')
+const modalEl = document.querySelector('#container')
+let totalScore = document.querySelector('#ttlScore')
 
 // Interchangable
 let score = 0
@@ -20,6 +19,8 @@ class Player {
         this.y = y
         this.radius = radius
         this.color = color
+        score = 0
+        
     }
 
     draw() {
@@ -67,19 +68,46 @@ class Enemy {
     }
 
     draw() {
-        let match = Math.random() > Math.random() ? -1 : 1
-        let mix = Math.random() > Math.random() ? 1 : -1
-
         c.beginPath()
         // c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
-        c.fillStyle = this.color
-        //              top-edge
-        c.moveTo(this.x + 30, this.y - 30);
-        //              bottom-edge       
-        c.lineTo(this.x + 30, this.y + 30);
-        //              center arrow
-        c.lineTo(this.x, this.y);
-        c.fill()
+        if (canvas.width/2 < this.x) {
+            c.fillStyle = this.color
+            //              top-edge
+            c.moveTo(this.x + 30, this.y - 30);
+            //              bottom-edge       
+            c.lineTo(this.x + 30, this.y + 30);
+            //              center arrow
+            c.lineTo(this.x, this.y);
+            c.fill()
+        } else if (canvas.width/2 > this.x) {
+            c.fillStyle = this.color
+            //              top-edge
+            c.moveTo(this.x - 30, this.y + 30);
+            //              bottom-edge       
+            c.lineTo(this.x - 30, this.y - 30);
+            //              center arrow
+            c.lineTo(this.x, this.y);
+            c.fill()
+        } else if (canvas.height/2 < this.y){
+            c.fillStyle = this.color
+            //              top-edge
+            c.moveTo(this.x + 30, this.y + 30);
+            //              bottom-edge       
+            c.lineTo(this.x - 30, this.y + 30);
+            //              center arrow
+            c.lineTo(this.x, this.y);
+            c.fill()
+            
+        }else {
+            c.fillStyle = this.color
+            //              top-edge
+            c.moveTo(this.x - 30, this.y - 30);
+            //              bottom-edge       
+            c.lineTo(this.x + 30, this.y - 30);
+            //              center arrow
+            c.lineTo(this.x, this.y);
+            c.fill()
+        }
     }
 
     update() {
@@ -164,15 +192,15 @@ function spawnEnemies() {
             y = randMath < 0.5 ? (canvas.height * quickmaffs) : (canvas.height / 2)
         }
 
-        const color = `hsl(${Math.random() * 360}, 50%, 50%)`
+        const color = `hsl(${Math.random() * 360}, 100%, 100%)`
 
         const angle = Math.atan2(
             canvas.height / 2 - y,
             canvas.width / 2 - x)
 
         const velocity = {
-            x: Math.cos(angle) * 2,
-            y: Math.sin(angle) * 2
+            x: Math.cos(angle) * 3,
+            y: Math.sin(angle) * 3
         }
 
 
@@ -212,6 +240,7 @@ function animate() {
 
     enemies.forEach((enemy, index) => {
         enemy.update()
+
         const dist = Math.hypot(player1.x - enemy.x, player1.y - enemy.y)
         //player touches    (((END GAME)))
         if (dist - enemy.radius - player1.radius < 1) {
@@ -220,6 +249,7 @@ function animate() {
             totalScore.innerHTML = score
         }
         projectiles.forEach((projectile, projectileIndex) => {
+
             const dist = Math.hypot(projectile.x - enemy.x, projectile.y - enemy.y)
             //objects touches
             if (dist - enemy.radius - projectile.radius < 1) {
@@ -231,7 +261,7 @@ function animate() {
                     })
                     )
                 }
-                if (enemy.radius - 10 > 5) {
+                if (enemy.radius - 10 > 10) {
                     //Increase Score
                     score += 100
                     scored.innerHTML = score
@@ -264,8 +294,8 @@ addEventListener('click', (event) => {
     )
 
     const velocity = {
-        x: Math.cos(angle) * 5,
-        y: Math.sin(angle) * 5
+        x: Math.cos(angle) * 6,
+        y: Math.sin(angle) * 6
     }
 
     projectiles.push(new Projectile(
