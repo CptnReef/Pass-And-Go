@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, url_for
-import os, json
+import os
+import json
 
 Main_Blueprint = Blueprint('main', __name__, template_folder='templates')
 
@@ -19,7 +20,7 @@ def go():
     for game in gameDirectoryList:
         games.append({
             "title": game,
-            "imageUrl": f"/games/{game}/title-image.png"
+            "imageUrl": f"games/{game}/title-image.png"
         })
 
     context = {"games": games}
@@ -29,11 +30,6 @@ def go():
 
 @Main_Blueprint.route('/get_game_url/<gameindex>', methods=['GET'])
 def get_game_url(gameindex):
-
-    # TODO loop through every file in the folder
-    # Then add js files to an array
-    # Then add html files to an array
-    # Then send both of those arrays as a json object back
 
     gameDirectoryList = os.listdir("./Pass_Go/static/games")
     game = gameDirectoryList[int(gameindex)]
