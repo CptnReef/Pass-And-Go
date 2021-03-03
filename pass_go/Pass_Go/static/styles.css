@@ -102,7 +102,7 @@ body {
 	position: absolute;
 	margin: 0;
 	padding: 0;
-	z-index: 98;
+	z-index: -100;
 
 	-webkit-transition: all 0.25s ease-in-out;
 	-moz-transition: all 0.25s ease-in-out;
@@ -175,6 +175,7 @@ body {
 }
 
 /* 3.0 Auth */
+
 .auth-section {
     display: flex;
     flex-direction: column;
@@ -197,8 +198,80 @@ body {
     padding: 5px 40px;
 }
 
+/* 4.0 Profile Section */
+.profile-icon {
+    padding-top: 6px;
+}
 
-/* 4.0 Utility Classes */
+.profile-name {
+    font-size: 28px;
+}
+
+.profile-header {
+    text-align: right;
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-stat-section {
+    background-color: rgb(255, 255, 255);
+    padding-bottom: 40px;
+    padding-top: 10px;
+}
+
+.user-stats-container {
+    width: 80%;
+    margin-left: 10%;
+}
+
+.user-stat {
+    width: 45%;
+    min-width: 300px;
+    margin: 10px;
+    padding: 40px;
+    border: 1px solid rgb(179, 179, 179);
+    border-radius: 10px;
+    background-color: rgb(219, 218, 218);
+}
+
+.profile-setting-section {
+    background-color: aliceblue;
+}
+
+/* 4.0 Game Window */
+.game-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+.gameTile {
+    width: 18rem;
+    z-index: 101;
+}
+
+.gameTile:hover {
+    transition: all 0.5s;
+    box-shadow: 2px 2px 5px gray;
+}
+
+.gameImage {
+    width: 150px;
+    height: 150px;
+
+    background-size: cover;
+    background-position: center;
+
+    border-radius: 5px;
+}
+
+#canvas {
+    width: 100%;
+}
+
+/* 5.0 Utility Classes */
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -208,3 +281,45 @@ body {
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
+
+.hidden {
+    width: 0;
+    display: none;
+}
+
+.text-med {
+    color: rgb(94, 93, 93);
+}
+
+.error {
+    color: rgb(238, 77, 77);
+    margin: 10px auto;
+    max-width: 200px;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Game: "Dance To Death" Style Sheet*/
+#container {
+    position: absolute;
+    /* border: 3px solid green; */
+    display: flex;
+    top: 50%;
+    left: 36%;
+    margin: -25px 0 0 -25px; /* apply negative top and left margins to truly center the element */
+    transform: translate(-50%, -50%);
+}
+
+#container canvas, #overlay {
+    position: absolute;
+
+    /* border: 3px solid green; */
+}
+
