@@ -7,6 +7,7 @@ const TURN_SERVER_CREDENTIAL = 'credential';
 const PC_CONFIG = {
   iceServers: [
       {
+        { 'urls': 'stun:stun.l.google.com:19302' },
         urls: 'turn:' + TURN_SERVER_URL + '?transport=tcp',
         username: TURN_SERVER_USERNAME,
         credential: TURN_SERVER_CREDENTIAL
